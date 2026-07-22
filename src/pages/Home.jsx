@@ -142,23 +142,28 @@ export default function Home() {
           <h2 className="section-title">Shop by Category</h2>
         </div>
         <div className="category-circle-grid">
-          {categories.map((cat) => (
-            <Link
-              to={`/category/${cat.slug}`}
-              className="category-circle-card"
-              key={cat.id}
-            >
-              <div className="category-circle-image-wrapper">
-                <img
-                  src={cat.image_url}
-                  alt={cat.name}
-                  className="category-circle-image"
-                  loading="lazy"
-                />
-              </div>
-              <span className="category-circle-label">{cat.name}</span>
-            </Link>
-          ))}
+          {categories
+            .filter((cat) => {
+              // Ensure category has at least one product
+              return products.some(p => p.category_id === cat.id || (cat.slug === 'sale' && (p.sale_price || p.discount_percent)));
+            })
+            .map((cat) => (
+              <Link
+                to={`/category/${cat.slug}`}
+                className="category-circle-card"
+                key={cat.id}
+              >
+                <div className="category-circle-image-wrapper">
+                  <img
+                    src={cat.image_url}
+                    alt={cat.name}
+                    className="category-circle-image"
+                    loading="lazy"
+                  />
+                </div>
+                <span className="category-circle-label">{cat.name}</span>
+              </Link>
+            ))}
         </div>
       </section>
 
@@ -278,10 +283,13 @@ export default function Home() {
       <section style={{ backgroundColor: 'var(--color-bg-secondary)', padding: 'var(--spacing-xxl) 0', borderTop: '1px solid var(--color-border)' }}>
         <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
           <h3 style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: 'var(--spacing-md)', letterSpacing: '1px' }}>
-            CLASSIC COLLECTION SOLAPUR: REDEFINING STYLE SINCE 1998
+            CLASSIC: REDEFINING URBAN STYLE
           </h3>
+          <p style={{ fontSize: '13px', color: 'var(--color-secondary-text)', lineHeight: 1.7, textAlign: 'justify', marginBottom: 'var(--spacing-sm)' }}>
+            <strong>This website is owned and managed by Dominal Technologies.</strong>
+          </p>
           <p style={{ fontSize: '13px', color: 'var(--color-secondary-text)', lineHeight: 1.7, textAlign: 'justify' }}>
-            Classic Collection Solapur was launched in 1998 with one guiding principle – to redefine casual wear for men. As a brand, we have always been progressive and expressive. We strive to provide premium clothing that represents creative freedom. What started with denims has now expanded to a complete wardrobe solution containing Shirts, T-shirts, Trousers, Cargos, Sweaters, Jackets, and Footwear.
+            Classic was launched with one guiding principle – to redefine casual wear for modern lifestyles. As a brand, we have always been progressive and expressive. We strive to provide premium clothing that represents creative freedom. What started with denims has now expanded to a complete wardrobe solution containing Shirts, T-shirts, Trousers, Cargos, Sweaters, Jackets, and Footwear.
           </p>
           
           {seoExpanded ? (

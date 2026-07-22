@@ -42,11 +42,11 @@ export default function Footer() {
         <div>
           <h4 className="footer-column-title">Corporate Info</h4>
           <ul className="footer-list">
-            <li className="footer-item"><Link to="/" className="footer-link">About Us</Link></li>
-            <li className="footer-item"><Link to="/" className="footer-link">Careers</Link></li>
-            <li className="footer-item"><Link to="/" className="footer-link">Store Locator</Link></li>
-            <li className="footer-item"><Link to="/" className="footer-link">Franchise Enquiry</Link></li>
-            <li className="footer-item"><Link to="/" className="footer-link">Investor Relations</Link></li>
+            <li className="footer-item"><Link to="/about-us" className="footer-link">About Us</Link></li>
+            <li className="footer-item"><Link to="/contact-us" className="footer-link">Contact Us</Link></li>
+            <li className="footer-item"><Link to="/shipping-policy" className="footer-link">Shipping & Delivery</Link></li>
+            <li className="footer-item"><Link to="/return-refund-policy" className="footer-link">Return & Refund Policy</Link></li>
+            <li className="footer-item"><Link to="/terms-and-conditions" className="footer-link">Terms & Conditions</Link></li>
           </ul>
         </div>
 
@@ -54,20 +54,22 @@ export default function Footer() {
         <div>
           <h4 className="footer-column-title">Customer Help</h4>
           <ul className="footer-list">
-            <li className="footer-item"><Link to="/" className="footer-link">Track Order Status</Link></li>
-            <li className="footer-item"><Link to="/" className="footer-link">Easy Return Policy</Link></li>
-            <li className="footer-item"><Link to="/" className="footer-link">FAQs</Link></li>
-            <li className="footer-item"><Link to="/" className="footer-link">Shipping & Delivery</Link></li>
-            <li className="footer-item"><Link to="/" className="footer-link">Contact Customer Care</Link></li>
+            <li className="footer-item"><Link to="/return-refund-policy" className="footer-link">7-Days Return Policy</Link></li>
+            <li className="footer-item"><Link to="/shipping-policy" className="footer-link">3-7 Days Shipping SLA</Link></li>
+            <li className="footer-item"><Link to="/return-refund-policy" className="footer-link">5-7 Days Refund SLA</Link></li>
+            <li className="footer-item"><Link to="/privacy-policy" className="footer-link">Privacy Policy</Link></li>
+            <li className="footer-item"><Link to="/contact-us" className="footer-link">Customer Care</Link></li>
           </ul>
         </div>
 
         {/* Col 3: Contact */}
         <div>
-          <h4 className="footer-column-title">Contact Us</h4>
+          <h4 className="footer-column-title">Contact & Ownership</h4>
           <ul className="footer-list">
+            <li className="footer-item" style={{ color: '#ffffff', fontWeight: 600, marginBottom: 'var(--spacing-xs)' }}>
+              This website is owned and managed by Dominal Technologies.
+            </li>
             <li className="footer-item" style={{ color: '#999999', fontWeight: 300, marginBottom: 'var(--spacing-sm)' }}>
-              Credo Brands Marketing Ltd.<br />
               Plot No. 8, Marol Co-op Industrial Estate,<br />
               Andheri East, Mumbai - 400059
             </li>
@@ -120,12 +122,13 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="footer-bottom container">
-        <div>&copy; {new Date().getFullYear()} Credo Brands Marketing Ltd. All Rights Reserved.</div>
-        <div style={{ display: 'flex', gap: 'var(--spacing-md)' }}>
-          <Link to="/" style={{ color: '#666666' }}>Privacy Policy</Link>
-          <Link to="/" style={{ color: '#666666' }}>Terms & Conditions</Link>
-          <Link to="/" style={{ color: '#666666' }}>GST Invoices</Link>
+      <div className="footer-bottom container" style={{ flexDirection: 'column', gap: 'var(--spacing-xs)', textAlign: 'center' }}>
+        <div>&copy; {new Date().getFullYear()} Dominal Technologies. All Rights Reserved. (This website is owned and managed by Dominal Technologies)</div>
+        <div style={{ display: 'flex', gap: 'var(--spacing-md)', justifyContent: 'center', flexWrap: 'wrap', marginTop: '4px' }}>
+          <Link to="/privacy-policy" style={{ color: '#999999' }}>Privacy Policy</Link>
+          <Link to="/terms-and-conditions" style={{ color: '#999999' }}>Terms & Conditions</Link>
+          <Link to="/shipping-policy" style={{ color: '#999999' }}>Shipping Policy</Link>
+          <Link to="/return-refund-policy" style={{ color: '#999999' }}>Return & Refund Policy</Link>
         </div>
       </div>
     </footer>

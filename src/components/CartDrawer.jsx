@@ -142,13 +142,33 @@ export default function CartDrawer() {
                 />
               </div>
 
-              <div style={{ marginTop: 'var(--spacing-lg)', borderTop: '1px solid var(--color-border)', paddingTop: 'var(--spacing-md)' }}>
+              <div className="form-group">
+                <label className="form-label">Select Payment Method</label>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xs)', marginTop: '4px' }}>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', padding: 'var(--spacing-sm)', border: '1px solid var(--color-border)', borderRadius: '4px', cursor: 'pointer', backgroundColor: 'var(--color-bg-secondary)' }}>
+                    <input type="radio" name="paymentMethod" defaultChecked />
+                    <div style={{ fontSize: '12px' }}>
+                      <strong>PhonePe Payment Gateway (UPI / Cards / NetBanking)</strong>
+                      <div style={{ fontSize: '10px', color: 'var(--color-secondary-text)' }}>256-bit SSL encrypted secure payment</div>
+                    </div>
+                  </label>
+                  <label style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-sm)', padding: 'var(--spacing-sm)', border: '1px solid var(--color-border)', borderRadius: '4px', cursor: 'pointer' }}>
+                    <input type="radio" name="paymentMethod" />
+                    <div style={{ fontSize: '12px' }}>
+                      <strong>Cash on Delivery (COD)</strong>
+                      <div style={{ fontSize: '10px', color: 'var(--color-secondary-text)' }}>Pay cash upon delivery</div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div style={{ marginTop: 'var(--spacing-md)', borderTop: '1px solid var(--color-border)', paddingTop: 'var(--spacing-md)' }}>
                 <div className="cart-summary-row">
                   <span>Items Subtotal</span>
                   <span>₹{cartTotal.toLocaleString('en-IN')}</span>
                 </div>
                 <div className="cart-summary-row">
-                  <span>Shipping Charges</span>
+                  <span>Shipping Charges (3-7 Days Delivery)</span>
                   <span>{shippingFee === 0 ? 'FREE' : `₹${shippingFee}`}</span>
                 </div>
                 <div className="cart-summary-row total">
@@ -157,8 +177,12 @@ export default function CartDrawer() {
                 </div>
               </div>
 
+              <p style={{ fontSize: '10px', color: 'var(--color-secondary-text)', textAlign: 'center', lineHeight: '1.4' }}>
+                By clicking Place Order, you agree to our <a href="/terms-and-conditions" target="_blank" style={{ textDecoration: 'underline' }}>Terms & Conditions</a>, <a href="/shipping-policy" target="_blank" style={{ textDecoration: 'underline' }}>Shipping Policy (3-7 Days)</a>, <a href="/return-refund-policy" target="_blank" style={{ textDecoration: 'underline' }}>7-Days Return & 5-7 Days Refund Policy</a>. Managed by <strong>Dominal Technologies</strong>.
+              </p>
+
               <button type="submit" className="checkout-btn" disabled={submittingOrder}>
-                {submittingOrder ? "PLACING ORDER..." : "PLACE ORDER (COD)"}
+                {submittingOrder ? "PROCESSING..." : "PAY & PLACE ORDER"}
               </button>
             </form>
           ) : cart.length === 0 ? (

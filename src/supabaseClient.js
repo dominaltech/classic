@@ -145,6 +145,78 @@ const seedProducts = [
       "https://images.unsplash.com/photo-1610410088109-844609c702c5?w=800&auto=format&fit=crop&q=80",
       "https://images.unsplash.com/photo-1544923246-77307dd654cb?w=800&auto=format&fit=crop&q=80"
     ]
+  },
+  {
+    id: 108,
+    category_id: 1,
+    title: "Riviera Linen Blend Pastel Shirt",
+    slug: "riviera-linen-blend-pastel-shirt",
+    description: "Lightweight European flax linen blend casual shirt tailored for Spring Summer '26. Breathable, breezy silhouette with a spread collar.",
+    regular_price: 3299.00,
+    sale_price: 1899.00,
+    discount_percent: 42,
+    fit_type: "Regular Fit",
+    color: "Pastel Sky Blue",
+    sizes: ["S", "M", "L", "XL"],
+    is_trending: true,
+    images: [
+      "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=800&auto=format&fit=crop&q=80"
+    ]
+  },
+  {
+    id: 109,
+    category_id: 1,
+    title: "Sunburst Resort Floral Casual Shirt",
+    slug: "sunburst-resort-floral-casual-shirt",
+    description: "Vibrant Cuban collar summer shirt with botanical motifs. Soft resort rayon fabric ensuring effortless drape and coolness.",
+    regular_price: 2799.00,
+    sale_price: 1699.00,
+    discount_percent: 39,
+    fit_type: "Relaxed Fit",
+    color: "Peach/Floral",
+    sizes: ["M", "L", "XL"],
+    is_trending: true,
+    images: [
+      "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=800&auto=format&fit=crop&q=80"
+    ]
+  },
+  {
+    id: 110,
+    category_id: 7,
+    title: "Clearance Essential Slub Cotton Polo",
+    slug: "clearance-essential-slub-cotton-polo",
+    description: "Classic textured slub cotton polo shirt with ribbed tipping. Special discount item for end of season sale.",
+    regular_price: 1999.00,
+    sale_price: 699.00,
+    discount_percent: 65,
+    fit_type: "Slim Fit",
+    color: "Navy Blue",
+    sizes: ["S", "M", "L", "XL"],
+    is_trending: false,
+    images: [
+      "https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=800&auto=format&fit=crop&q=80"
+    ]
+  },
+  {
+    id: 111,
+    category_id: 7,
+    title: "Discounted Slim Stretch Chino Trousers",
+    slug: "discounted-slim-stretch-chino-trousers",
+    description: "Versatile cotton stretch chinos for office and weekend outings. Premium tailoring now available at a 56% discount.",
+    regular_price: 2999.00,
+    sale_price: 1299.00,
+    discount_percent: 56,
+    fit_type: "Slim Fit",
+    color: "Khaki Beige",
+    sizes: ["30", "32", "34", "36"],
+    is_trending: true,
+    images: [
+      "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=800&auto=format&fit=crop&q=80"
+    ]
   }
 ];
 
@@ -184,6 +256,15 @@ if (typeof window !== 'undefined' && useMock) {
   }
   if (!localStorage.getItem('mock_db_products')) {
     localStorage.setItem('mock_db_products', JSON.stringify(seedProducts));
+  } else {
+    try {
+      const existingProds = JSON.parse(localStorage.getItem('mock_db_products')) || [];
+      if (existingProds.length < seedProducts.length) {
+        localStorage.setItem('mock_db_products', JSON.stringify(seedProducts));
+      }
+    } catch (e) {
+      console.error(e);
+    }
   }
   if (!localStorage.getItem('mock_db_banners')) {
     localStorage.setItem('mock_db_banners', JSON.stringify(seedBanners));

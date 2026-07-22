@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { Heart, ShoppingBag, ChevronDown, ChevronUp, Share2 } from 'lucide-react';
+import TrustBadgeBar from '../components/TrustBadgeBar';
 
 export default function ProductDetail() {
   const { slug } = useParams();
@@ -208,15 +209,8 @@ export default function ProductDetail() {
             </button>
           </div>
 
-          {/* Sizing Promo tags */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-xs)', backgroundColor: 'var(--color-bg-secondary)', padding: 'var(--spacing-md)', marginTop: 'var(--spacing-sm)', border: '1px solid var(--color-border)' }}>
-            <p style={{ fontSize: '12px', fontWeight: 'bold' }}>⚡ EXPRESS ADVANTAGE:</p>
-            <ul style={{ listStyle: 'inside', fontSize: '11px', color: 'var(--color-secondary-text)', paddingLeft: '4px' }}>
-              <li>Free delivery on all orders above ₹999</li>
-              <li>Hassle-free 15-day exchanges & returns</li>
-              <li>100% original products verified</li>
-            </ul>
-          </div>
+          {/* Trust Badge Bar */}
+          <TrustBadgeBar compact />
 
           {/* Collapsible Accordions details */}
           <div className="pdp-accordion">
@@ -253,17 +247,16 @@ export default function ProductDetail() {
             {/* Accordion 3: Shipping policy */}
             <div className="pdp-accordion-item">
               <button className="pdp-accordion-header" onClick={() => toggleAccordion('shipping')}>
-                <span>Shipping & Returns</span>
+                <span>Shipping, Return & Refund Policies</span>
                 {openAccordions.shipping ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </button>
               {openAccordions.shipping && (
                 <div className="pdp-accordion-content">
-                  <p>
-                    Dispatch: Dispatched within 24-48 hours of placing the order. Delivered in 4-6 business days across India.
-                  </p>
-                  <p style={{ marginTop: 'var(--spacing-xs)' }}>
-                    Returns: Easy return/exchange requests can be registered within 15 days of delivery through our customer help desk or order history panel.
-                  </p>
+                  <p><strong>Shipping Policy:</strong> Orders will be delivered within 3-7 business days across India.</p>
+                  <p style={{ marginTop: 'var(--spacing-xs)' }}><strong>Return Policy:</strong> We have 7-days return policy from the date of delivery.</p>
+                  <p style={{ marginTop: 'var(--spacing-xs)' }}><strong>Refund Policy:</strong> Refund will be credited to original payment method within 5-7 business days after inspection.</p>
+                  <p style={{ marginTop: 'var(--spacing-xs)' }}><strong>Replacement Policy:</strong> Replacement orders will be delivered within 3-7 business days.</p>
+                  <p style={{ marginTop: 'var(--spacing-xs)', fontStyle: 'italic', fontSize: '11px' }}>This website is owned and managed by Dominal Technologies.</p>
                 </div>
               )}
             </div>
