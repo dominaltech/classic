@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Details | Classic Menswear</title>
+  <title>Product Details | Classic Collections</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Montserrat:wght@400;500;700;900&display=swap');
     :root { --font-main: 'Inter', sans-serif; --font-heading: 'Montserrat', sans-serif; --max-width: 1200px; }
@@ -19,6 +19,10 @@
     .logo-brand { font-family: var(--font-heading); font-size: 24px; font-weight: 900; letter-spacing: 3px; }
     .nav-menu { display: flex; gap: 32px; list-style: none; }
     .nav-link { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    .nav-actions { display: flex; gap: 16px; align-items: center; }
+    .action-btn { position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+    .badge-count { position: absolute; top: 4px; right: 4px; background: #000; color: #fff; font-size: 10px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
 
     .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 60px 0; }
     .detail-image-wrap { aspect-ratio: 3/4; background: #f5f5f5; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0; }
@@ -43,6 +47,10 @@
     .spec-label { font-weight: 700; color: #555; width: 140px; }
 
     .footer { background: #000; color: #fff; padding: 40px 0; text-align: center; font-size: 12px; margin-top: 60px; }
+
+    @media (max-width: 768px) {
+      .detail-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -56,9 +64,10 @@
         <li><a href="about-us.html" class="nav-link">About Us</a></li>
         <li><a href="contact-us.html" class="nav-link">Contact</a></li>
       </ul>
-      <div>
-        <a href="wishlist.html" style="font-size:12px; font-weight:700; margin-right:16px;">Wishlist</a>
-        <a href="products.html" style="font-size:12px; font-weight:700;">Cart</a>
+      <div class="nav-actions">
+        <a href="products.html" class="action-btn" title="Back to Collection">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+        </a>
       </div>
     </div>
   </header>
@@ -69,7 +78,7 @@
 
   <footer class="footer">
     <div class="container">
-      © 2026 Classic Menswear (Dominal Technologies). All Rights Reserved.
+      This website is owned and managed by Dominal Technologies. © 2026 Classic Collections. All Rights Reserved.
     </div>
   </footer>
 
@@ -136,8 +145,7 @@
         const exist = cart.find(i => i.id === id);
         if (exist) { exist.qty += 1; } else { cart.push({ ...prod, qty: 1, size: '40' }); }
         localStorage.setItem('classic_cart', JSON.stringify(cart));
-        alert(`${prod.name} added to cart!`);
-        window.location.href = 'products.html';
+        window.location.href = 'checkout.html';
       }
     }
   </script>
