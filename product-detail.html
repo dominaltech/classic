@@ -3,50 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Details | Classic Collections</title>
+  <title>Product Details | Classic Collections Solapur (classicsolapur.com)</title>
+  <link rel="stylesheet" href="styles.css" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Montserrat:wght@400;500;700;900&display=swap');
-    :root { --font-main: 'Inter', sans-serif; --font-heading: 'Montserrat', sans-serif; --max-width: 1200px; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-main); color: #000; background: #fff; }
-    a { text-decoration: none; color: inherit; }
-    button { cursor: pointer; border: none; background: none; font-family: inherit; }
-
-    .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 16px; }
-
-    .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #e0e0e0; }
-    .nav-container { display: flex; align-items: center; justify-content: space-between; height: 70px; }
-    .logo-brand { font-family: var(--font-heading); font-size: 24px; font-weight: 900; letter-spacing: 3px; }
-    .nav-menu { display: flex; gap: 32px; list-style: none; }
-    .nav-link { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
-
-    .nav-actions { display: flex; gap: 16px; align-items: center; }
-    .action-btn { position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
-    .badge-count { position: absolute; top: 4px; right: 4px; background: #000; color: #fff; font-size: 10px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-
     .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 60px 0; }
-    .detail-image-wrap { aspect-ratio: 3/4; background: #f5f5f5; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0; }
+    .detail-image-wrap { aspect-ratio: 3/4; background: #f8fafc; border-radius: 8px; overflow: hidden; border: 1px solid var(--color-border); }
     .detail-image { width: 100%; height: 100%; object-fit: cover; }
 
-    .detail-category { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #777; margin-bottom: 8px; }
-    .detail-title { font-family: var(--font-heading); font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+    .detail-category { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--color-navy); margin-bottom: 8px; }
+    .detail-title { font-family: var(--font-heading); font-size: 28px; font-weight: 900; margin-bottom: 12px; color: var(--color-navy-dark); }
     .price-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
-    .curr-price { font-size: 24px; font-weight: 900; }
-    .orig-price { font-size: 16px; color: #999; text-decoration: line-through; }
+    .curr-price { font-size: 24px; font-weight: 900; color: var(--color-navy-dark); }
+    .orig-price { font-size: 16px; color: #94a3b8; text-decoration: line-through; }
 
     .size-box { display: flex; gap: 10px; margin: 16px 0 24px; }
-    .size-btn { width: 44px; height: 44px; border: 1px solid #000; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; }
-    .size-btn.active { background: #000; color: #fff; }
+    .size-btn { width: 44px; height: 44px; border: 1px solid var(--color-navy-dark); font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; border-radius: 4px; }
+    .size-btn.active { background: var(--color-navy-dark); color: #fff; }
 
     .action-row { display: flex; gap: 16px; margin-bottom: 32px; }
-    .btn-buy { flex: 1; padding: 16px; background: #000; color: #fff; font-weight: 800; text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; border: 1px solid #000; }
-    .btn-buy:hover { background: #fff; color: #000; }
+    .btn-buy { flex: 1; padding: 16px; background: var(--color-navy-dark); color: #fff; font-weight: 800; text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; border: 1px solid var(--color-navy-dark); border-radius: 4px; }
+    .btn-buy:hover { background: #fff; color: var(--color-navy-dark); }
 
     .spec-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 13px; }
     .spec-table td { padding: 10px 0; border-bottom: 1px solid #eee; }
     .spec-label { font-weight: 700; color: #555; width: 140px; }
-
-    .footer { background: #000; color: #fff; padding: 40px 0; text-align: center; font-size: 12px; margin-top: 60px; }
 
     @media (max-width: 768px) {
       .detail-grid { grid-template-columns: 1fr; }
@@ -57,7 +37,7 @@
 
   <header class="header">
     <div class="container nav-container">
-      <a href="index.html" class="logo-brand">CLASSIC</a>
+      <a href="index.html" class="logo-brand">CLASSIC SOLAPUR</a>
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link">Home</a></li>
         <li><a href="products.html" class="nav-link">Men Collection</a></li>
@@ -77,8 +57,8 @@
   </div>
 
   <footer class="footer">
-    <div class="container">
-      This website is owned and managed by Dominal Technologies. © 2026 Classic Collections. All Rights Reserved.
+    <div class="container" style="text-align: center;">
+      This website (classicsolapur.com) is owned and managed by Classic Collections Solapur. © 2026 Classic Collections Solapur. All Rights Reserved.
     </div>
   </footer>
 
@@ -110,12 +90,12 @@
           <div class="price-wrap">
             <span class="curr-price">₹${prod.price}</span>
             <span class="orig-price">₹${prod.originalPrice}</span>
-            <span style="background: #000; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 8px;">SAVE ${Math.round((1 - prod.price/prod.originalPrice)*100)}%</span>
+            <span style="background: var(--color-navy-dark); color: #fff; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 2px;">SAVE ${Math.round((1 - prod.price/prod.originalPrice)*100)}%</span>
           </div>
 
           <p style="font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 24px;">${prod.desc}</p>
 
-          <div style="font-size: 12px; font-weight: 800; text-transform: uppercase;">Select Collar Size:</div>
+          <div style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--color-navy-dark);">Select Collar Size:</div>
           <div class="size-box">
             <div class="size-btn">38</div>
             <div class="size-btn active">40</div>
@@ -128,11 +108,11 @@
           </div>
 
           <table class="spec-table">
+            <tr><td class="spec-label">Brand & Store</td><td>Classic Collections Solapur (classicsolapur.com)</td></tr>
             <tr><td class="spec-label">Fabric / Material</td><td>${prod.fabric}</td></tr>
             <tr><td class="spec-label">Weave & Pattern</td><td>${prod.pattern}</td></tr>
             <tr><td class="spec-label">Occasion</td><td>${prod.type} Wear</td></tr>
-            <tr><td class="spec-label">Care Instructions</td><td>Dry Clean or Soft Hand Wash</td></tr>
-            <tr><td class="spec-label">Origin</td><td>Handcrafted in Maharashtra, India</td></tr>
+            <tr><td class="spec-label">Origin</td><td>Handcrafted in Solapur, Maharashtra, India</td></tr>
           </table>
         </div>
       `;
