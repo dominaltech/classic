@@ -1,13 +1,640 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Classic Collection Solapur | Redefining Men&#39;s Fashion</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classic Collections | Luxury Menswear & Fine Fabrics</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Montserrat:wght@400;500;700;900&display=swap');
+
+    :root {
+      --color-primary-text: #000000;
+      --color-secondary-text: #555555;
+      --color-accent: #d32f2f;
+      --color-accent-gold: #c5a059;
+      --color-bg-main: #ffffff;
+      --color-bg-secondary: #f9f9f9;
+      --color-border: #e0e0e0;
+      --color-white: #ffffff;
+      --color-black: #000000;
+      --color-shadow: rgba(0, 0, 0, 0.08);
+      --color-overlay: rgba(0, 0, 0, 0.6);
+      
+      --font-main: 'Inter', sans-serif;
+      --font-heading: 'Montserrat', sans-serif;
+      --max-width: 1400px;
+      --navbar-height: 70px;
+      --promo-height: 36px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-main); background-color: var(--color-bg-main); color: var(--color-primary-text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; transition: color 0.2s ease; }
+    button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
+    button { cursor: pointer; border: none; background: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 16px; }
+
+    .promo-bar { background-color: var(--color-black); color: var(--color-white); height: var(--promo-height); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-border); }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; height: var(--navbar-height); }
+    .logo-brand { font-family: var(--font-heading); font-size: 22px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--color-black); text-decoration: none; }
+    .logo-subtext { font-size: 9px; letter-spacing: 1.5px; color: var(--color-secondary-text); font-weight: 600; display: block; margin-top: -4px; }
+    
+    .nav-menu { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-link { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-black); position: relative; padding: 8px 0; }
+    .nav-link:hover, .nav-link.active { color: var(--color-accent-gold); }
+
+    .dropdown-container { position: relative; }
+    .dropdown-menu { position: absolute; top: 100%; left: 0; width: 220px; background: var(--color-white); border: 1px solid var(--color-border); box-shadow: 0 10px 30px var(--color-shadow); border-radius: 4px; padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.2s ease; list-style: none; z-index: 120; }
+    .dropdown-container:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-title { padding: 6px 16px 2px; font-size: 10px; font-weight: 900; letter-spacing: 1.5px; color: var(--color-secondary-text); text-transform: uppercase; }
+    .dropdown-item { padding: 8px 16px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary-text); display: block; }
+    .dropdown-item:hover { background-color: var(--color-bg-secondary); color: var(--color-black); }
+
+    .nav-actions { display: flex; align-items: center; gap: 16px; }
+    .action-btn { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; position: relative; transition: background 0.2s ease; }
+    .action-btn:hover { background-color: var(--color-bg-secondary); }
+    .badge-count { position: absolute; top: 4px; right: 4px; background-color: var(--color-black); color: var(--color-white); font-size: 10px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    .hero-banner { background: linear-gradient(135deg, #111 0%, #222 100%); color: var(--color-white); padding: 80px 0; text-align: center; position: relative; overflow: hidden; }
+    .hero-title { font-family: var(--font-heading); font-size: 40px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
+    .hero-subtitle { font-size: 14px; color: #ccc; letter-spacing: 1.5px; text-transform: uppercase; max-width: 650px; margin: 0 auto 30px; }
+    
+    .btn-primary { display: inline-block; background-color: var(--color-black); color: var(--color-white); padding: 14px 36px; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; border: 1px solid var(--color-black); transition: all 0.2s ease; }
+    .btn-primary:hover { background-color: var(--color-white); color: var(--color-black); }
+    .btn-white { background-color: var(--color-white); color: var(--color-black); border: 1px solid var(--color-white); }
+    .btn-white:hover { background-color: transparent; color: var(--color-white); }
+
+    .section-header { text-align: center; margin: 60px 0 30px; }
+    .section-title { font-family: var(--font-heading); font-size: 24px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+    .section-subtitle { font-size: 12px; color: var(--color-secondary-text); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 60px; }
+    .category-card { position: relative; height: 350px; border-radius: 4px; overflow: hidden; background: #eee; }
+    .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .category-card:hover img { transform: scale(1.06); }
+    .category-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; color: var(--color-white); }
+    .category-name { font-family: var(--font-heading); font-size: 22px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+    .category-desc { font-size: 12px; color: #ddd; margin-bottom: 16px; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; margin-bottom: 60px; }
+    .product-card { background: var(--color-white); border: 1px solid var(--color-border); border-radius: 4px; overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative; display: flex; flex-direction: column; }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px var(--color-shadow); }
+    .product-image-wrap { position: relative; aspect-ratio: 3/4; background: #f5f5f5; overflow: hidden; }
+    .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .product-card:hover .product-image { transform: scale(1.05); }
+    .wishlist-btn { position: absolute; top: 12px; right: 12px; background: rgba(255, 255, 255, 0.9); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: background 0.2s ease; }
+    .wishlist-btn:hover { background: var(--color-white); }
+    .wishlist-btn.active svg { fill: var(--color-accent); stroke: var(--color-accent); }
+    .product-tag { position: absolute; top: 12px; left: 12px; background: var(--color-black); color: var(--color-white); font-size: 9px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 4px 8px; border-radius: 2px; }
+    .product-info { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
+    .product-category { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-secondary-text); margin-bottom: 4px; }
+    .product-name { font-size: 14px; font-weight: 700; color: var(--color-black); margin-bottom: 6px; }
+    .product-fabric { font-size: 11px; color: #777; margin-bottom: 8px; }
+    .product-price-row { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 8px; }
+    .price-current { font-size: 15px; font-weight: 800; color: var(--color-black); }
+    .price-original { font-size: 12px; color: #999; text-decoration: line-through; }
+    .add-cart-btn { margin-top: 12px; width: 100%; padding: 10px; background: var(--color-black); color: var(--color-white); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; border: 1px solid var(--color-black); transition: all 0.2s ease; }
+    .add-cart-btn:hover { background: var(--color-white); color: var(--color-black); }
+
+    .trust-bar { background: var(--color-bg-secondary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 40px 0; margin: 60px 0; }
+    .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; text-align: center; }
+    .trust-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--color-white); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+    .trust-title { font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+    .trust-desc { font-size: 11px; color: var(--color-secondary-text); margin-top: 4px; }
+
+    /* OVERLAYS & MODALS */
+    .drawer-overlay { position: fixed; inset: 0; background: var(--color-overlay); backdrop-filter: blur(4px); z-index: 200; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+    .drawer-overlay.active { opacity: 1; visibility: visible; }
+    
+    /* CART & WISHLIST DRAWERS */
+    .side-drawer { position: fixed; top: 0; right: 0; width: 100%; max-width: 440px; height: 100%; background: var(--color-white); z-index: 210; transform: translateX(100%); transition: transform 0.3s ease; display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.15); }
+    .side-drawer.active { transform: translateX(0); }
+    .drawer-header { padding: 16px 24px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; }
+    .drawer-title { font-size: 16px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; }
+    .drawer-body { padding: 16px 24px; flex-grow: 1; overflow-y: auto; }
+    .drawer-footer { padding: 24px; border-top: 1px solid var(--color-border); background: var(--color-bg-secondary); }
+
+    /* POLICY MODAL POPUP */
+    .policy-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .policy-modal { background: #fff; width: 100%; max-width: 800px; max-height: 85vh; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+    .policy-modal-header { background: #000; color: #fff; padding: 20px 28px; display: flex; justify-content: space-between; align-items: center; }
+    .policy-modal-title { font-family: var(--font-heading); font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; }
+    .policy-modal-body { padding: 28px; overflow-y: auto; font-size: 14px; color: #333; line-height: 1.7; }
+    .policy-highlight { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 14px; margin: 16px 0; font-weight: 700; color: #1b5e20; }
+
+    .icon-btn-close { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; cursor: pointer; }
+    .icon-btn-close:hover { background: rgba(0,0,0,0.08); }
+    .icon-btn-close-dark:hover { background: rgba(255,255,255,0.2); }
+
+    /* FOOTER */
+    .footer { background-color: var(--color-black); color: var(--color-white); padding: 60px 0 30px; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 40px; }
+    .footer-col-title { font-family: var(--font-heading); font-size: 13px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; color: var(--color-white); }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a, .footer-links button { font-size: 12px; color: #aaaaaa; text-align: left; background: none; border: none; padding: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+    .footer-links a:hover, .footer-links button:hover { color: var(--color-white); }
+    .footer-ownership { background: #111; padding: 16px; text-align: center; border-radius: 4px; margin-bottom: 24px; font-size: 13px; color: #fff; font-weight: 700; border: 1px solid #333; }
+    .footer-bottom { text-align: center; font-size: 11px; color: #777; border-top: 1px solid #222; padding-top: 24px; }
+  </style>
+</head>
+<body>
+
+  <!-- PROMO BAR -->
+  <div class="promo-bar">
+    Orders Delivered Within 3 to 7 Business Days Across India | Call / WhatsApp: +91 8766882442
+  </div>
+
+  <!-- HEADER NAVBAR -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-brand">
+        CLASSIC
+        <span class="logo-subtext">COLLECTIONS</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        
+        <li class="dropdown-container">
+          <a href="products.html" class="nav-link">Men Collection ▾</a>
+          <ul class="dropdown-menu">
+            <li class="dropdown-title">Formal Wear</li>
+            <li><a href="products.html?type=Formal&pattern=Whites" class="dropdown-item">Whites Formal</a></li>
+            <li><a href="products.html?type=Formal&pattern=Plain" class="dropdown-item">Plain Formal</a></li>
+            <li><a href="products.html?type=Formal&pattern=Strips" class="dropdown-item">Strips (Stripes)</a></li>
+            <li><a href="products.html?type=Formal&pattern=Checks" class="dropdown-item">Checks Formal</a></li>
+            <li><a href="products.html?type=Formal&pattern=Prints" class="dropdown-item">Prints Formal</a></li>
+            
+            <li class="dropdown-title" style="margin-top: 10px;">Casual Wear</li>
+            <li><a href="products.html?type=Casual&pattern=Checks" class="dropdown-item">Checks Casual</a></li>
+            <li><a href="products.html?type=Casual&pattern=Whites" class="dropdown-item">Whites Casual</a></li>
+            <li><a href="products.html?type=Casual&pattern=Solid" class="dropdown-item">Solid Casual</a></li>
+            <li><a href="products.html?type=Casual&pattern=Prints" class="dropdown-item">Prints Casual</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown-container">
+          <a href="products.html" class="nav-link">Fabrics ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="products.html?fabric=Cotton" class="dropdown-item">Pure Cotton</a></li>
+            <li><a href="products.html?fabric=Linen" class="dropdown-item">French Linen</a></li>
+            <li><a href="products.html?fabric=Khadi" class="dropdown-item">Hand-spun Khadi (₹600)</a></li>
+            <li><a href="products.html?fabric=Silk" class="dropdown-item">Mulberry Silk (₹350)</a></li>
+            <li><a href="products.html?fabric=Linen Cotton" class="dropdown-item">Linen Cotton Blend</a></li>
+          </ul>
+        </li>
+
+        <li><a href="about-us.html" class="nav-link">About Us</a></li>
+        <li><a href="contact-us.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <!-- WISHLIST TRIGGER MODAL BUTTON -->
+        <button class="action-btn" id="wishlistTrigger" title="Saved Wishlist Items">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+          </svg>
+          <span class="badge-count wishlist-count-badge">0</span>
+        </button>
+
+        <!-- CART TRIGGER DRAWER BUTTON -->
+        <button class="action-btn" id="cartTrigger" title="Shopping Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 01-8 0"></path>
+          </svg>
+          <span class="badge-count cart-count-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-banner">
+    <div class="container">
+      <h1 class="hero-title">LUXURY IN EVERY THREAD</h1>
+      <p class="hero-subtitle">Discover handcrafted Khadi (₹600), Mulberry Silk (₹350), Linen & Premium Cotton Shirts tailored for distinction.</p>
+      <div style="display: flex; justify-content: center; gap: 16px;">
+        <a href="products.html?type=Formal" class="btn-primary btn-white">Shop Men Formal</a>
+        <a href="products.html?type=Casual" class="btn-primary">Shop Men Casual</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY HIGHLIGHTS -->
+  <section class="container">
+    <div class="section-header">
+      <h2 class="section-title">THE MEN'S COLLECTION</h2>
+      <p class="section-subtitle">Formal & Casual Tailored Apparel</p>
+    </div>
+
+    <div class="category-grid">
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700&auto=format&fit=crop&q=80" alt="Men Formal Wear" />
+        <div class="category-overlay">
+          <h3 class="category-name">Men Formal</h3>
+          <p class="category-desc">Whites, Plain, Strips, Checks & Prints</p>
+          <a href="products.html?type=Formal" class="btn-primary btn-white" style="width: fit-content;">Explore Formals</a>
+        </div>
+      </div>
+
+      <div class="category-card">
+        <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700&auto=format&fit=crop&q=80" alt="Men Casual Wear" />
+        <div class="category-overlay">
+          <h3 class="category-name">Men Casual</h3>
+          <p class="category-desc">Checks, Whites, Solid & Print Styles</p>
+          <a href="products.html?type=Casual" class="btn-primary btn-white" style="width: fit-content;">Explore Casuals</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="container">
+    <div class="section-header">
+      <h2 class="section-title">FEATURED CRAFTSMANSHIP</h2>
+      <p class="section-subtitle">Hand-picked Khadi (₹600), Mulberry Silk (₹350) & Linen Blends</p>
+    </div>
+
+    <div class="product-grid" id="homeFeaturedGrid">
+      <!-- Injected by JavaScript -->
+    </div>
+  </section>
+
+  <!-- TRUST BADGES BAR WITH SVG ICONS -->
+  <section class="trust-bar">
+    <div class="container trust-grid">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <h4 class="trust-title">100% Authentic</h4>
+        <p class="trust-desc">Guaranteed pure Khadi, Silk & Cotton fabrics.</p>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        </div>
+        <h4 class="trust-title">Fast Delivery</h4>
+        <p class="trust-desc">Orders will be delivered within 3 to 7 business days.</p>
+      </div>
+
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+        </div>
+        <h4 class="trust-title">7-Days Return Policy</h4>
+        <p class="trust-desc">We have 7-days return policy guaranteed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OVERLAY FOR DRAWERS & MODALS -->
+  <div class="drawer-overlay" id="overlay"></div>
+
+  <!-- SHOPPING CART DRAWER -->
+  <div class="side-drawer" id="cartDrawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title">Shopping Cart</h3>
+      <button class="icon-btn-close" id="closeCartBtn" title="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="cartDrawerBody">
+      <!-- Dynamic cart items -->
+    </div>
+    <div class="drawer-footer">
+      <div style="display:flex; justify-content:space-between; font-weight:900; font-size:16px; margin-bottom:16px;">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">₹0</span>
+      </div>
+      <a href="checkout.html" class="btn-primary" style="display: block; text-align: center; width: 100%;">Proceed To Checkout</a>
+    </div>
+  </div>
+
+  <!-- WISHLIST DRAWER / MODAL -->
+  <div class="side-drawer" id="wishlistDrawer">
+    <div class="drawer-header">
+      <h3 class="drawer-title">Saved Wishlist Items</h3>
+      <button class="icon-btn-close" id="closeWishlistBtn" title="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="drawer-body" id="wishlistDrawerBody">
+      <!-- Dynamic wishlist items -->
+    </div>
+  </div>
+
+  <!-- INTERACTIVE POLICY POPUP MODAL -->
+  <div class="policy-modal-overlay" id="policyModalOverlay">
+    <div class="policy-modal">
+      <div class="policy-modal-header">
+        <h3 class="policy-modal-title" id="policyModalTitle">Policy Document</h3>
+        <button class="icon-btn-close icon-btn-close-dark" onclick="closePolicyModal()" title="Close">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="policy-modal-body" id="policyModalContent">
+        <!-- Content injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-ownership">
+        This website is owned and managed by Dominal Technologies.
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <h4 class="footer-col-title">CLASSIC COLLECTIONS</h4>
+          <p style="font-size: 12px; color: #999; line-height: 1.6;">
+            Premium Men's tailoring and ready-to-wear luxury shirts. Pure Khadi, Mulberry Silk, Linen & Fine Cottons.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Shop Collection</h4>
+          <ul class="footer-links">
+            <li><a href="products.html?type=Formal">Men Formal Wear</a></li>
+            <li><a href="products.html?type=Casual">Men Casual Wear</a></li>
+            <li><a href="products.html?fabric=Khadi">Hand-spun Khadi (₹600)</a></li>
+            <li><a href="products.html?fabric=Silk">Mulberry Silk (₹350)</a></li>
+            <li><a href="products.html?fabric=Linen">French Linen Shirts</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Customer Policies (Click to View)</h4>
+          <ul class="footer-links">
+            <li><button onclick="openPolicyModal('shipping')">Shipping Policy (3-7 Business Days)</button></li>
+            <li><button onclick="openPolicyModal('return')">Return & Refund Policy (7-Days Return)</button></li>
+            <li><button onclick="openPolicyModal('terms')">Terms & Conditions</button></li>
+            <li><button onclick="openPolicyModal('privacy')">Privacy Policy</button></li>
+            <li><a href="contact-us.html">Contact Customer Care</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Corporate Contact Info</h4>
+          <p style="font-size: 12px; color: #999; line-height: 1.6;">
+            Dominal Technologies (Classic Collections)<br />
+            Plot No. 8, Marol Co-op Industrial Estate, Andheri East, Mumbai - 400059, Maharashtra, India<br />
+            Email: <strong>classicbydominal@gmail.com</strong><br />
+            Phone: <strong>+91 8766882442</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        This website is owned and managed by Dominal Technologies. © 2026 Classic Collections. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- EMBEDDED JAVASCRIPT -->
+  <script>
+    const POLICIES_DATA = {
+      shipping: `
+        <h2 style="font-size:18px; font-weight:900; margin-bottom:12px;">SHIPPING & DELIVERY POLICY</h2>
+        <div class="policy-highlight">Mandatory Delivery Timeline: Orders will be delivered within 3 to 7 business days.</div>
+        <p><strong>1. Delivery Timeframe:</strong> Orders will be delivered within 3 to 7 business days across all pin codes in India via registered domestic courier partners and speed post.</p>
+        <p><strong>2. Order Processing:</strong> Orders are verified and dispatched within 24 to 48 hours from our warehouse.</p>
+        <p><strong>3. Free Shipping:</strong> Free express shipping on orders above ₹1,999. Flat ₹99 charge for orders below ₹1,999.</p>
+        <p><strong>4. Contact for Tracking:</strong> Email: <strong>classicbydominal@gmail.com</strong> | Phone: <strong>+91 8766882442</strong>.</p>
+      `,
+      return: `
+        <h2 style="font-size:18px; font-weight:900; margin-bottom:12px;">RETURN, REFUND & REPLACEMENT POLICY</h2>
+        <div class="policy-highlight">We have 7-days return policy.</div>
+        <p><strong>1. Return Policy:</strong> We have 7-days return policy from the date of product delivery for defective or incorrect size items.</p>
+        <div class="policy-highlight">Refund will be credited to original payment method within 5 to 7 business days.</div>
+        <p><strong>2. Refund Policy:</strong> Refund will be credited to original payment method within 5 to 7 business days upon return inspection.</p>
+        <div class="policy-highlight">Replacement orders will be delivered within 5 to 7 business days.</div>
+        <p><strong>3. Replacement Policy:</strong> Replacement orders will be delivered within 5 to 7 business days after item verification.</p>
+        <p><strong>4. Support:</strong> Email <strong>classicbydominal@gmail.com</strong> or Call/WhatsApp <strong>+91 8766882442</strong>.</p>
+      `,
+      terms: `
+        <h2 style="font-size:18px; font-weight:900; margin-bottom:12px;">TERMS & CONDITIONS OF USE</h2>
+        <p>This electronic record is generated under the Information Technology Act, 2000 and Rule 3 (1) of the IT (Intermediaries Guidelines) Rules, 2011.</p>
+        <p><strong>Business Ownership:</strong> This website is owned and managed by Dominal Technologies (Brand: Classic Collections).</p>
+        <p><strong>Compliance:</strong> Usage of this platform constitutes full acceptance of all operational terms and conditions.</p>
+      `,
+      privacy: `
+        <h2 style="font-size:18px; font-weight:900; margin-bottom:12px;">PRIVACY POLICY</h2>
+        <p>Dominal Technologies protects your data. Personal details collected (Name, Email, Phone, Address) are strictly used for order processing and delivery.</p>
+        <p><strong>Data Security:</strong> Encrypted transactions via PCI-DSS compliant RBI authorized gateways.</p>
+      `
+    };
+
+    const PRODUCTS = [
+      { id: "m-f-1", name: "Classic Pure Khadi Formal Shirt", gender: "Men", type: "Formal", pattern: "Plain", fabric: "Khadi", price: 600, originalPrice: 1200, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&auto=format&fit=crop&q=80", badge: "Bestseller" },
+      { id: "m-f-2", name: "Royal Mulberry Silk Executive Shirt", gender: "Men", type: "Formal", pattern: "Whites", fabric: "Silk", price: 350, originalPrice: 850, image: "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=600&auto=format&fit=crop&q=80", badge: "Special Offer" },
+      { id: "m-f-3", name: "Pinstripe Linen Blend Formal Shirt", gender: "Men", type: "Formal", pattern: "Strips", fabric: "Linen Cotton", price: 750, originalPrice: 1400, image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&auto=format&fit=crop&q=80", badge: "New Arrival" },
+      { id: "m-f-4", name: "Micro Check Cotton Formal Shirt", gender: "Men", type: "Formal", pattern: "Checks", fabric: "Cotton", price: 899, originalPrice: 1599, image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600&auto=format&fit=crop&q=80", badge: "Classic" },
+      { id: "m-f-5", name: "Monochrome Print Formal Linen Shirt", gender: "Men", type: "Formal", pattern: "Prints", fabric: "Linen", price: 950, originalPrice: 1800, image: "https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=600&auto=format&fit=crop&q=80", badge: "Premium" },
+      { id: "m-c-1", name: "Heritage Windowpane Check Casual Shirt", gender: "Men", type: "Casual", pattern: "Checks", fabric: "Cotton", price: 699, originalPrice: 1299, image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&auto=format&fit=crop&q=80", badge: "Popular" },
+      { id: "m-c-2", name: "Crisp White Linen Casual Overshirt", gender: "Men", type: "Casual", pattern: "Whites", fabric: "Linen", price: 1100, originalPrice: 1999, image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80", badge: "Bestseller" },
+      { id: "m-c-3", name: "Solid Khadi Navy Casual Shirt", gender: "Men", type: "Casual", pattern: "Solid", fabric: "Khadi", price: 600, originalPrice: 1100, image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600&auto=format&fit=crop&q=80", badge: "Artisanal" },
+      { id: "m-c-4", name: "Botanical Print Linen Cotton Casual Shirt", gender: "Men", type: "Casual", pattern: "Prints", fabric: "Linen Cotton", price: 850, originalPrice: 1500, image: "https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600&auto=format&fit=crop&q=80", badge: "Summer Ed." }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('classic_cart') || '[]');
+    let wishlist = JSON.parse(localStorage.getItem('classic_wishlist') || '[]');
+
+    function saveCart() {
+      localStorage.setItem('classic_cart', JSON.stringify(cart));
+      updateBadges();
+      renderCart();
+    }
+
+    function saveWishlist() {
+      localStorage.setItem('classic_wishlist', JSON.stringify(wishlist));
+      updateBadges();
+      renderWishlistDrawer();
+    }
+
+    function updateBadges() {
+      const cartCount = cart.reduce((acc, i) => acc + i.qty, 0);
+      document.querySelectorAll('.cart-count-badge').forEach(b => b.textContent = cartCount);
+      document.querySelectorAll('.wishlist-count-badge').forEach(b => b.textContent = wishlist.length);
+    }
+
+    function addToCart(id) {
+      const prod = PRODUCTS.find(p => p.id === id);
+      if (!prod) return;
+      const exist = cart.find(i => i.id === id);
+      if (exist) { exist.qty += 1; } else { cart.push({ ...prod, qty: 1, size: '40' }); }
+      saveCart();
+      toggleDrawer('cartDrawer', true);
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+        saveCart();
+      }
+    }
+
+    function toggleWishlist(id) {
+      if (wishlist.includes(id)) {
+        wishlist = wishlist.filter(i => i !== id);
+      } else {
+        wishlist.push(id);
+      }
+      saveWishlist();
+      document.querySelectorAll(`.wishlist-btn[data-id="${id}"]`).forEach(btn => {
+        btn.classList.toggle('active', wishlist.includes(id));
+      });
+    }
+
+    function toggleDrawer(drawerId, open) {
+      const overlay = document.getElementById('overlay');
+      const drawer = document.getElementById(drawerId);
+      if (open) {
+        overlay.classList.add('active');
+        drawer.classList.add('active');
+      } else {
+        overlay.classList.remove('active');
+        document.querySelectorAll('.side-drawer').forEach(d => d.classList.remove('active'));
+      }
+    }
+
+    function renderCart() {
+      const body = document.getElementById('cartDrawerBody');
+      const subtotal = document.getElementById('cartSubtotal');
+      if (!body) return;
+
+      if (cart.length === 0) {
+        body.innerHTML = '<p style="text-align:center; padding: 40px 0; color:#777;">Your Shopping Cart is Empty</p>';
+        if (subtotal) subtotal.textContent = '₹0';
+        return;
+      }
+
+      let total = 0;
+      body.innerHTML = cart.map(item => {
+        total += item.price * item.qty;
+        return `
+          <div class="cart-item">
+            <img src="${item.image}" class="cart-item-img" alt="${item.name}" />
+            <div style="flex-grow:1;">
+              <div class="cart-item-title">${item.name}</div>
+              <div style="font-size:11px; color:#666;">Fabric: ${item.fabric}</div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px;">
+                <span style="font-weight:800;">₹${item.price}</span>
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+                  <span style="font-size:12px; font-weight:700;">${item.qty}</span>
+                  <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      if (subtotal) subtotal.textContent = `₹${total}`;
+    }
+
+    function renderWishlistDrawer() {
+      const body = document.getElementById('wishlistDrawerBody');
+      if (!body) return;
+
+      const items = PRODUCTS.filter(p => wishlist.includes(p.id));
+      if (items.length === 0) {
+        body.innerHTML = '<p style="text-align:center; padding:40px 0; color:#777;">No saved items in Wishlist.</p>';
+        return;
+      }
+
+      body.innerHTML = items.map(p => `
+        <div style="display:flex; gap:12px; margin-bottom:16px; border-bottom:1px solid #eee; padding-bottom:12px;">
+          <img src="${p.image}" style="width:60px; height:75px; object-fit:cover; border-radius:4px;" />
+          <div style="flex-grow:1;">
+            <div style="font-size:13px; font-weight:700;">${p.name}</div>
+            <div style="font-size:11px; color:#666;">₹${p.price} • ${p.fabric}</div>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+              <button onclick="addToCart('${p.id}')" style="background:#000; color:#fff; font-size:10px; font-weight:700; padding:4px 8px; border-radius:2px; text-transform:uppercase;">Add To Cart</button>
+              <button onclick="toggleWishlist('${p.id}')" style="color:#d32f2f; font-size:10px; font-weight:700;">Remove</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderFeatured() {
+      const grid = document.getElementById('homeFeaturedGrid');
+      if (!grid) return;
+      grid.innerHTML = PRODUCTS.slice(0, 4).map(p => {
+        const isWish = wishlist.includes(p.id);
+        return `
+          <div class="product-card">
+            <div class="product-image-wrap">
+              <span class="product-tag">${p.badge}</span>
+              <button class="wishlist-btn ${isWish ? 'active' : ''}" data-id="${p.id}" onclick="toggleWishlist('${p.id}')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="${isWish ? '#d32f2f' : 'none'}" stroke="${isWish ? '#d32f2f' : '#000'}" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+                </svg>
+              </button>
+              <a href="product-detail.html?id=${p.id}">
+                <img src="${p.image}" class="product-image" alt="${p.name}" />
+              </a>
+            </div>
+            <div class="product-info">
+              <div class="product-category">${p.gender} | ${p.type} • ${p.pattern}</div>
+              <a href="product-detail.html?id=${p.id}" class="product-name">${p.name}</a>
+              <div class="product-fabric">Fabric: <strong>${p.fabric}</strong></div>
+              <div class="product-price-row">
+                <span class="price-current">₹${p.price}</span>
+                <span class="price-original">₹${p.originalPrice}</span>
+              </div>
+              <button class="add-cart-btn" onclick="addToCart('${p.id}')">Add To Cart</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openPolicyModal(key) {
+      const modal = document.getElementById('policyModalOverlay');
+      const title = document.getElementById('policyModalTitle');
+      const content = document.getElementById('policyModalContent');
+
+      title.textContent = key.toUpperCase() + ' POLICY';
+      content.innerHTML = POLICIES_DATA[key] || '<p>Policy details unavailable.</p>';
+      modal.style.display = 'flex';
+    }
+
+    function closePolicyModal() {
+      document.getElementById('policyModalOverlay').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      updateBadges();
+      renderCart();
+      renderWishlistDrawer();
+      renderFeatured();
+
+      document.getElementById('cartTrigger')?.addEventListener('click', () => toggleDrawer('cartDrawer', true));
+      document.getElementById('closeCartBtn')?.addEventListener('click', () => toggleDrawer('cartDrawer', false));
+      
+      document.getElementById('wishlistTrigger')?.addEventListener('click', () => toggleDrawer('wishlistDrawer', true));
+      document.getElementById('closeWishlistBtn')?.addEventListener('click', () => toggleDrawer('wishlistDrawer', false));
+
+      document.getElementById('overlay')?.addEventListener('click', () => toggleDrawer('', false));
+      document.getElementById('policyModalOverlay')?.addEventListener('click', (e) => {
+        if (e.target.id === 'policyModalOverlay') closePolicyModal();
+      });
+    });
+  </script>
+</body>
 </html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details | Classic Menswear</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Montserrat:wght@400;500;700;900&display=swap');
+    :root { --font-main: 'Inter', sans-serif; --font-heading: 'Montserrat', sans-serif; --max-width: 1200px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-main); color: #000; background: #fff; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 16px; }
+
+    .header { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #e0e0e0; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+    .logo-brand { font-family: var(--font-heading); font-size: 24px; font-weight: 900; letter-spacing: 3px; }
+    .nav-menu { display: flex; gap: 32px; list-style: none; }
+    .nav-link { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; padding: 60px 0; }
+    .detail-image-wrap { aspect-ratio: 3/4; background: #f5f5f5; border-radius: 8px; overflow: hidden; border: 1px solid #e0e0e0; }
+    .detail-image { width: 100%; height: 100%; object-fit: cover; }
+
+    .detail-category { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #777; margin-bottom: 8px; }
+    .detail-title { font-family: var(--font-heading); font-size: 28px; font-weight: 900; margin-bottom: 12px; }
+    .price-wrap { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .curr-price { font-size: 24px; font-weight: 900; }
+    .orig-price { font-size: 16px; color: #999; text-decoration: line-through; }
+
+    .size-box { display: flex; gap: 10px; margin: 16px 0 24px; }
+    .size-btn { width: 44px; height: 44px; border: 1px solid #000; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+    .size-btn.active { background: #000; color: #fff; }
+
+    .action-row { display: flex; gap: 16px; margin-bottom: 32px; }
+    .btn-buy { flex: 1; padding: 16px; background: #000; color: #fff; font-weight: 800; text-transform: uppercase; font-size: 13px; letter-spacing: 1.5px; border: 1px solid #000; }
+    .btn-buy:hover { background: #fff; color: #000; }
+
+    .spec-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 13px; }
+    .spec-table td { padding: 10px 0; border-bottom: 1px solid #eee; }
+    .spec-label { font-weight: 700; color: #555; width: 140px; }
+
+    .footer { background: #000; color: #fff; padding: 40px 0; text-align: center; font-size: 12px; margin-top: 60px; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo-brand">CLASSIC</a>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="products.html" class="nav-link">Men Collection</a></li>
+        <li><a href="about-us.html" class="nav-link">About Us</a></li>
+        <li><a href="contact-us.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div>
+        <a href="wishlist.html" style="font-size:12px; font-weight:700; margin-right:16px;">Wishlist</a>
+        <a href="products.html" style="font-size:12px; font-weight:700;">Cart</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container detail-grid" id="productDetailContainer">
+    <!-- Rendered by JavaScript -->
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      © 2026 Classic Menswear (Dominal Technologies). All Rights Reserved.
+    </div>
+  </footer>
+
+  <script>
+    const PRODUCTS = [
+      { id: "m-f-1", name: "Classic Pure Khadi Formal Shirt", gender: "Men", type: "Formal", pattern: "Plain", fabric: "Khadi", price: 600, originalPrice: 1200, image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&auto=format&fit=crop&q=80", desc: "Handcrafted pure Khadi formal shirt offering exceptional breathability and eco-elegance." },
+      { id: "m-f-2", name: "Royal Mulberry Silk Executive Shirt", gender: "Men", type: "Formal", pattern: "Whites", fabric: "Silk", price: 350, originalPrice: 850, image: "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=600&auto=format&fit=crop&q=80", desc: "Luxurious mulberry silk shirt tailored for boardroom presence." },
+      { id: "m-f-3", name: "Pinstripe Linen Blend Formal Shirt", gender: "Men", type: "Formal", pattern: "Strips", fabric: "Linen Cotton", price: 750, originalPrice: 1400, image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&auto=format&fit=crop&q=80", desc: "Tailored pinstripe shirt made from breathable linen cotton blend." },
+      { id: "m-f-4", name: "Micro Check Cotton Formal Shirt", gender: "Men", type: "Formal", pattern: "Checks", fabric: "Cotton", price: 899, originalPrice: 1599, image: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=600&auto=format&fit=crop&q=80", desc: "Sharp micro-check pattern crafted from 100% Giza cotton." },
+      { id: "m-f-5", name: "Monochrome Print Formal Linen Shirt", gender: "Men", type: "Formal", pattern: "Prints", fabric: "Linen", price: 950, originalPrice: 1800, image: "https://images.unsplash.com/photo-1589310243389-96a5483213a8?w=600&auto=format&fit=crop&q=80", desc: "Subtle monochrome motif printed on pure French linen." },
+      { id: "m-c-1", name: "Heritage Windowpane Check Casual Shirt", gender: "Men", type: "Casual", pattern: "Checks", fabric: "Cotton", price: 699, originalPrice: 1299, image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&auto=format&fit=crop&q=80", desc: "Relaxed fit windowpane check shirt for weekend outings." },
+      { id: "m-c-2", name: "Crisp White Linen Casual Overshirt", gender: "Men", type: "Casual", pattern: "Whites", fabric: "Linen", price: 1100, originalPrice: 1999, image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80", desc: "Effortlessly stylish crisp white casual linen overshirt." },
+      { id: "m-c-3", name: "Solid Khadi Navy Casual Shirt", gender: "Men", type: "Casual", pattern: "Solid", fabric: "Khadi", price: 600, originalPrice: 1100, image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=600&auto=format&fit=crop&q=80", desc: "Rich solid navy tone in pure hand-spun Khadi fabric." },
+      { id: "m-c-4", name: "Botanical Print Linen Cotton Casual Shirt", gender: "Men", type: "Casual", pattern: "Prints", fabric: "Linen Cotton", price: 850, originalPrice: 1500, image: "https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?w=600&auto=format&fit=crop&q=80", desc: "Vibrant botanical summer print in soft linen cotton." }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id') || 'm-f-1';
+      const prod = PRODUCTS.find(p => p.id === id) || PRODUCTS[0];
+
+      document.getElementById('productDetailContainer').innerHTML = `
+        <div class="detail-image-wrap">
+          <img src="${prod.image}" class="detail-image" alt="${prod.name}" />
+        </div>
+        <div>
+          <div class="detail-category">${prod.gender} • ${prod.type} • ${prod.pattern}</div>
+          <h1 class="detail-title">${prod.name}</h1>
+          <div class="price-wrap">
+            <span class="curr-price">₹${prod.price}</span>
+            <span class="orig-price">₹${prod.originalPrice}</span>
+            <span style="background: #000; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 8px;">SAVE ${Math.round((1 - prod.price/prod.originalPrice)*100)}%</span>
+          </div>
+
+          <p style="font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 24px;">${prod.desc}</p>
+
+          <div style="font-size: 12px; font-weight: 800; text-transform: uppercase;">Select Collar Size:</div>
+          <div class="size-box">
+            <div class="size-btn">38</div>
+            <div class="size-btn active">40</div>
+            <div class="size-btn">42</div>
+            <div class="size-btn">44</div>
+          </div>
+
+          <div class="action-row">
+            <button class="btn-buy" onclick="addToCartDetail('${prod.id}')">Add To Shopping Bag</button>
+          </div>
+
+          <table class="spec-table">
+            <tr><td class="spec-label">Fabric / Material</td><td>${prod.fabric}</td></tr>
+            <tr><td class="spec-label">Weave & Pattern</td><td>${prod.pattern}</td></tr>
+            <tr><td class="spec-label">Occasion</td><td>${prod.type} Wear</td></tr>
+            <tr><td class="spec-label">Care Instructions</td><td>Dry Clean or Soft Hand Wash</td></tr>
+            <tr><td class="spec-label">Origin</td><td>Handcrafted in Maharashtra, India</td></tr>
+          </table>
+        </div>
+      `;
+    });
+
+    function addToCartDetail(id) {
+      let cart = JSON.parse(localStorage.getItem('classic_cart') || '[]');
+      const prod = PRODUCTS.find(p => p.id === id);
+      if (prod) {
+        const exist = cart.find(i => i.id === id);
+        if (exist) { exist.qty += 1; } else { cart.push({ ...prod, qty: 1, size: '40' }); }
+        localStorage.setItem('classic_cart', JSON.stringify(cart));
+        alert(`${prod.name} added to cart!`);
+        window.location.href = 'products.html';
+      }
+    }
+  </script>
+</body>
+</html>

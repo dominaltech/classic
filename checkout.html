@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | Classic Collections</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Montserrat:wght@400;500;700;900&display=swap');
+
+    :root {
+      --color-primary: #000;
+      --color-border: #e0e0e0;
+      --font-main: 'Inter', sans-serif;
+      --font-heading: 'Montserrat', sans-serif;
+      --max-width: 1200px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-main); color: #000; background: #f9f9f9; line-height: 1.5; }
+    a { text-decoration: none; color: inherit; }
+    button, input, select, textarea { font-family: inherit; font-size: inherit; }
+
+    .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 16px; }
+
+    /* HEADER */
+    .checkout-header { background: #000; color: #fff; padding: 16px 0; border-bottom: 1px solid #222; }
+    .header-flex { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-heading); font-size: 22px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* LAYOUT */
+    .checkout-layout { display: grid; grid-template-columns: 1fr 420px; gap: 32px; padding: 40px 0; }
+    .card { background: #fff; border: 1px solid var(--color-border); border-radius: 8px; padding: 28px; margin-bottom: 24px; }
+    .card-title { font-family: var(--font-heading); font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; border-bottom: 2px solid #000; padding-bottom: 8px; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 16px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; }
+    .form-input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; outline: none; }
+    .form-input:focus { border-color: #000; }
+
+    /* PAYMENT METHODS */
+    .payment-option { border: 1px solid var(--color-border); border-radius: 6px; padding: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+    .payment-option input { accent-color: #000; width: 18px; height: 18px; }
+
+    /* ORDER SUMMARY */
+    .summary-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #eee; }
+    .summary-img { width: 54px; height: 68px; object-fit: cover; border-radius: 4px; background: #eee; }
+    .row-space { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 13px; }
+    .total-row { display: flex; justify-content: space-between; font-size: 18px; font-weight: 900; border-top: 2px solid #000; padding-top: 14px; margin-top: 14px; }
+
+    .btn-place-order { width: 100%; padding: 16px; background: #000; color: #fff; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; border: none; cursor: pointer; border-radius: 4px; transition: background 0.2s; }
+    .btn-place-order:hover { background: #222; }
+
+    .compliance-notice { background: #e8f5e9; border: 1px solid #c8e6c9; color: #2e7d32; padding: 12px; border-radius: 4px; font-size: 12px; font-weight: 600; margin-top: 16px; text-align: center; }
+
+    @media (max-width: 900px) {
+      .checkout-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CHECKOUT HEADER -->
+  <header class="checkout-header">
+    <div class="container header-flex">
+      <a href="index.html" class="logo">CLASSIC COLLECTIONS</a>
+      <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Owned & Managed by Dominal Technologies</span>
+    </div>
+  </header>
+
+  <!-- MAIN CHECKOUT -->
+  <div class="container checkout-layout">
+
+    <!-- LEFT: SHIPPING & PAYMENT FORM -->
+    <div>
+      <div class="card">
+        <h2 class="card-title">1. Shipping & Delivery Address</h2>
+        <form id="checkoutForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">First Name *</label>
+              <input type="text" class="form-input" required placeholder="John" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name *</label>
+              <input type="text" class="form-input" required placeholder="Doe" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" class="form-input" required placeholder="john@example.com" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number *</label>
+              <input type="tel" class="form-input" required placeholder="+91 98765 43210" />
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Street Address *</label>
+              <input type="text" class="form-input" required placeholder="Flat / House No., Street, Area" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">City *</label>
+              <input type="text" class="form-input" required placeholder="Mumbai / Solapur" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">State *</label>
+              <input type="text" class="form-input" required placeholder="Maharashtra" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Pincode *</label>
+              <input type="text" class="form-input" required placeholder="400059" />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2 class="card-title">2. Select Payment Method</h2>
+        
+        <label class="payment-option">
+          <input type="radio" name="paymentMethod" value="phonepe" checked />
+          <div>
+            <strong style="font-size: 13px;">UPI / Credit Card / Debit Card / NetBanking (PhonePe Gateway)</strong>
+            <div style="font-size: 11px; color: #666;">Instant online payment via RBI-authorized secure payment gateway.</div>
+          </div>
+        </label>
+
+        <label class="payment-option">
+          <input type="radio" name="paymentMethod" value="cod" />
+          <div>
+            <strong style="font-size: 13px;">Cash On Delivery (COD)</strong>
+            <div style="font-size: 11px; color: #666;">Pay cash upon delivery at your doorstep.</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <div>
+      <div class="card">
+        <h2 class="card-title">Order Summary</h2>
+        <div id="checkoutItemsList">
+          <!-- Injected by JS -->
+        </div>
+
+        <div style="margin-top: 20px;">
+          <div class="row-space">
+            <span>Items Subtotal</span>
+            <strong id="subtotalVal">₹0</strong>
+          </div>
+          <div class="row-space">
+            <span>Express Shipping (3-7 Business Days)</span>
+            <strong style="color: #2e7d32;">FREE</strong>
+          </div>
+          <div class="row-space">
+            <span>Taxes & GST (Included)</span>
+            <span>₹0</span>
+          </div>
+
+          <div class="total-row">
+            <span>Total Payable</span>
+            <span id="totalPayableVal">₹0</span>
+          </div>
+        </div>
+
+        <button class="btn-place-order" style="margin-top: 24px;" onclick="handlePlaceOrder()">Place Order & Pay Now</button>
+
+        <div class="compliance-notice">
+          🔒 Secure 256-bit Encryption • 7-Days Easy Return Policy Guaranteed
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="orderSuccessModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:300; align-items:center; justify-content:center;">
+    <div style="background:#fff; padding:40px; border-radius:8px; max-width:480px; text-align:center;">
+      <div style="font-size:48px; color:#2e7d32;">✓</div>
+      <h2 style="font-family: var(--font-heading); font-size: 22px; font-weight: 900; margin: 12px 0;">ORDER CONFIRMED!</h2>
+      <p style="font-size: 13px; color: #555; margin-bottom: 20px;">
+        Thank you for shopping with Classic Collections.<br />
+        Your order has been placed. Delivery timeframe: <strong>3 to 7 business days</strong>.
+      </p>
+      <div style="font-size: 12px; background: #f0f0f0; padding: 10px; border-radius: 4px; margin-bottom: 20px;">
+        Order ID: <strong>#ORD-${Math.floor(100000 + Math.random() * 900000)}</strong>
+      </div>
+      <a href="index.html" style="display:inline-block; padding:12px 28px; background:#000; color:#fff; font-weight:800; font-size:12px; text-transform:uppercase;">Return To Homepage</a>
+    </div>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem('classic_cart') || '[]');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const list = document.getElementById('checkoutItemsList');
+      const subtotalEl = document.getElementById('subtotalVal');
+      const totalEl = document.getElementById('totalPayableVal');
+
+      if (cart.length === 0) {
+        list.innerHTML = '<p style="font-size:13px; color:#777; padding:20px 0; text-align:center;">Your shopping bag is empty. <a href="products.html" style="text-decoration:underline; font-weight:700;">Add products</a></p>';
+        return;
+      }
+
+      let total = 0;
+      list.innerHTML = cart.map(item => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+        return `
+          <div class="summary-item">
+            <img src="${item.image}" class="summary-img" alt="${item.name}" />
+            <div style="flex-grow:1;">
+              <div style="font-size:13px; font-weight:700;">${item.name}</div>
+              <div style="font-size:11px; color:#666;">Size: ${item.size || '40'} | Qty: ${item.qty}</div>
+              <div style="font-weight:800; font-size:13px; margin-top:4px;">₹${item.price}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      subtotalEl.textContent = `₹${total}`;
+      totalEl.textContent = `₹${total}`;
+    });
+
+    function handlePlaceOrder() {
+      if (cart.length === 0) {
+        alert('Your shopping bag is empty!');
+        return;
+      }
+      localStorage.removeItem('classic_cart');
+      document.getElementById('orderSuccessModal').style.display = 'flex';
+    }
+  </script>
+</body>
+</html>
