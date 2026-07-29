@@ -8,12 +8,13 @@
   <style>
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin-bottom: 40px; }
     .info-card { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 24px; }
-    .info-icon { background: #f0f0f0; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #000; }
-    .form-box { background: #f9f9f9; padding: 28px; border-radius: 8px; border: 1px solid #e0e0e0; }
+    .info-icon { background: var(--color-navy-light); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--color-navy-dark); }
+    .form-box { background: var(--color-bg-secondary); padding: 28px; border-radius: 8px; border: 1px solid var(--color-border); }
     .form-group { margin-bottom: 16px; }
-    .form-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; }
-    .form-input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; outline: none; }
-    .btn-submit { width: 100%; padding: 14px; background: #000; color: #fff; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; border: none; cursor: pointer; border-radius: 4px; }
+    .form-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: block; color: var(--color-navy-dark); }
+    .form-input { width: 100%; padding: 12px; border: 1px solid var(--color-border); border-radius: 4px; font-size: 13px; outline: none; background: #fff; }
+    .btn-submit { width: 100%; padding: 14px; background: var(--color-navy-dark); color: #fff; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; border: none; cursor: pointer; border-radius: 4px; }
+    .btn-submit:hover { background: var(--color-navy); }
   </style>
 </head>
 <body>
@@ -38,27 +39,27 @@
   </header>
 
   <div class="container" style="padding: 36px 16px;">
-    <h1 style="font-family: var(--font-heading); font-size: 26px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 6px;">CONTACT CUSTOMER SUPPORT</h1>
-    <p style="font-size: 12px; text-align: center; color: #555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">We Are Here To Assist You With Orders, Returns & Inquiries</p>
+    <h1 style="font-family: var(--font-heading); font-size: 26px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; text-align: center; margin-bottom: 6px; color: var(--color-navy-dark);">CONTACT CUSTOMER SUPPORT</h1>
+    <p style="font-size: 12px; text-align: center; color: var(--color-secondary-text); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">We Are Here To Assist You With Orders, Returns & Inquiries</p>
 
-    <div style="background: #000; color: #fff; padding: 16px; border-radius: 8px; text-align: center; margin-bottom: 36px; font-weight: 700; font-size: 13px;">
+    <div style="background: var(--color-navy-dark); color: #fff; padding: 16px; border-radius: 8px; text-align: center; margin-bottom: 36px; font-weight: 700; font-size: 13px;">
       This website is owned and managed by Dominal Technologies.
     </div>
 
     <div class="grid-2">
       <div>
-        <h2 style="font-size: 18px; font-weight: 900; text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 8px; margin-bottom: 24px;">Get In Touch</h2>
+        <h2 style="font-size: 18px; font-weight: 900; text-transform: uppercase; border-bottom: 2px solid var(--color-navy-dark); padding-bottom: 8px; margin-bottom: 24px; color: var(--color-navy-dark);">Get In Touch</h2>
 
         <div class="info-card">
           <div class="info-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           </div>
           <div>
-            <h3 style="font-size: 14px; font-weight: 800;">Corporate Registered Address</h3>
-            <p style="font-size: 13px; color: #555; margin-top: 4px;">
-              Dominal Technologies (Classic Collections)<br />
-              Plot No. 8, Marol Co-op Industrial Estate,<br />
-              Andheri East, Mumbai - 400059, Maharashtra, India
+            <h3 style="font-size: 14px; font-weight: 800; color: var(--color-navy-dark);">Store & Corporate Address</h3>
+            <p style="font-size: 13px; color: #475569; margin-top: 4px; line-height: 1.6;">
+              <strong>Dominal Technologies (Classic Collections)</strong><br />
+              Vijapur Ves Rd, Shaniwar Peth,<br />
+              Solapur, Maharashtra 413002, India
             </p>
           </div>
         </div>
@@ -68,8 +69,8 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
           </div>
           <div>
-            <h3 style="font-size: 14px; font-weight: 800;">Email Customer Care</h3>
-            <p style="font-size: 13px; color: #555; margin-top: 4px;">
+            <h3 style="font-size: 14px; font-weight: 800; color: var(--color-navy-dark);">Email Customer Care</h3>
+            <p style="font-size: 13px; color: #475569; margin-top: 4px;">
               <strong>classicbydominal@gmail.com</strong>
             </p>
           </div>
@@ -80,8 +81,8 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
           </div>
           <div>
-            <h3 style="font-size: 14px; font-weight: 800;">Helpline & WhatsApp Support</h3>
-            <p style="font-size: 13px; color: #555; margin-top: 4px;">
+            <h3 style="font-size: 14px; font-weight: 800; color: var(--color-navy-dark);">Helpline & WhatsApp Support</h3>
+            <p style="font-size: 13px; color: #475569; margin-top: 4px;">
               <strong>+91 8766882442</strong> / 8766882442
             </p>
           </div>
@@ -90,7 +91,7 @@
 
       <!-- FORM -->
       <div class="form-box">
-        <h2 style="font-size: 18px; font-weight: 900; text-transform: uppercase; margin-bottom: 20px;">Send An Inquiry</h2>
+        <h2 style="font-size: 18px; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; color: var(--color-navy-dark);">Send An Inquiry</h2>
         <form id="contactForm" onsubmit="handleContactSubmit(event)">
           <div class="form-group">
             <label class="form-label">Full Name *</label>
@@ -110,8 +111,8 @@
           </div>
           <button type="submit" class="btn-submit">Submit Message</button>
         </form>
-        <div id="contactAlert" style="display:none; background:#e8f5e9; color:#2e7d32; padding:12px; border-radius:4px; font-weight:700; margin-top:16px; text-align:center;">
-          ✓ Message sent to classicbydominal@gmail.com! Our team will get back to you shortly.
+        <div id="contactAlert" style="display:none; background:#eff6ff; color:var(--color-navy-dark); padding:12px; border-radius:4px; font-weight:700; margin-top:16px; text-align:center; border:1px solid var(--color-border);">
+          ✓ Message sent to classicbydominal@gmail.com! Our team in Solapur will get back to you shortly.
         </div>
       </div>
     </div>
@@ -161,6 +162,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container" style="text-align: center;">
+      <p style="margin-bottom:8px; font-size:12px; color:#cbd5e1;">Dominal Technologies • Vijapur Ves Rd, Shaniwar Peth, Solapur, Maharashtra 413002</p>
       This website is owned and managed by Dominal Technologies. © 2026 Classic Collections. All Rights Reserved.
     </div>
   </footer>
