@@ -4,146 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Classic Collections | Luxury Menswear & Fine Fabrics</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Montserrat:wght@400;500;700;900&display=swap');
-
-    :root {
-      --color-primary-text: #000000;
-      --color-secondary-text: #555555;
-      --color-accent: #d32f2f;
-      --color-accent-gold: #c5a059;
-      --color-bg-main: #ffffff;
-      --color-bg-secondary: #f9f9f9;
-      --color-border: #e0e0e0;
-      --color-white: #ffffff;
-      --color-black: #000000;
-      --color-shadow: rgba(0, 0, 0, 0.08);
-      --color-overlay: rgba(0, 0, 0, 0.6);
-      
-      --font-main: 'Inter', sans-serif;
-      --font-heading: 'Montserrat', sans-serif;
-      --max-width: 1400px;
-      --navbar-height: 70px;
-      --promo-height: 36px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-main); background-color: var(--color-bg-main); color: var(--color-primary-text); line-height: 1.5; -webkit-font-smoothing: antialiased; }
-    a { text-decoration: none; color: inherit; transition: color 0.2s ease; }
-    button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
-    button { cursor: pointer; border: none; background: none; }
-    img { max-width: 100%; height: auto; display: block; }
-
-    .container { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 16px; }
-
-    .promo-bar { background-color: var(--color-black); color: var(--color-white); height: var(--promo-height); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; }
-
-    .header { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--color-border); }
-    .nav-container { display: flex; align-items: center; justify-content: space-between; height: var(--navbar-height); }
-    .logo-brand { font-family: var(--font-heading); font-size: 22px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--color-black); text-decoration: none; }
-    .logo-subtext { font-size: 9px; letter-spacing: 1.5px; color: var(--color-secondary-text); font-weight: 600; display: block; margin-top: -4px; }
-    
-    .nav-menu { display: flex; align-items: center; gap: 32px; list-style: none; }
-    .nav-link { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-black); position: relative; padding: 8px 0; }
-    .nav-link:hover, .nav-link.active { color: var(--color-accent-gold); }
-
-    .dropdown-container { position: relative; }
-    .dropdown-menu { position: absolute; top: 100%; left: 0; width: 220px; background: var(--color-white); border: 1px solid var(--color-border); box-shadow: 0 10px 30px var(--color-shadow); border-radius: 4px; padding: 8px 0; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.2s ease; list-style: none; z-index: 120; }
-    .dropdown-container:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-    .dropdown-title { padding: 6px 16px 2px; font-size: 10px; font-weight: 900; letter-spacing: 1.5px; color: var(--color-secondary-text); text-transform: uppercase; }
-    .dropdown-item { padding: 8px 16px; font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--color-primary-text); display: block; }
-    .dropdown-item:hover { background-color: var(--color-bg-secondary); color: var(--color-black); }
-
-    .nav-actions { display: flex; align-items: center; gap: 16px; }
-    .action-btn { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; position: relative; transition: background 0.2s ease; }
-    .action-btn:hover { background-color: var(--color-bg-secondary); }
-    .badge-count { position: absolute; top: 4px; right: 4px; background-color: var(--color-black); color: var(--color-white); font-size: 10px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
-
-    .hero-banner { background: linear-gradient(135deg, #111 0%, #222 100%); color: var(--color-white); padding: 80px 0; text-align: center; position: relative; overflow: hidden; }
-    .hero-title { font-family: var(--font-heading); font-size: 40px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
-    .hero-subtitle { font-size: 14px; color: #ccc; letter-spacing: 1.5px; text-transform: uppercase; max-width: 650px; margin: 0 auto 30px; }
-    
-    .btn-primary { display: inline-block; background-color: var(--color-black); color: var(--color-white); padding: 14px 36px; font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; border: 1px solid var(--color-black); transition: all 0.2s ease; }
-    .btn-primary:hover { background-color: var(--color-white); color: var(--color-black); }
-    .btn-white { background-color: var(--color-white); color: var(--color-black); border: 1px solid var(--color-white); }
-    .btn-white:hover { background-color: transparent; color: var(--color-white); }
-
-    .section-header { text-align: center; margin: 60px 0 30px; }
-    .section-title { font-family: var(--font-heading); font-size: 24px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-    .section-subtitle { font-size: 12px; color: var(--color-secondary-text); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
-
-    .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 60px; }
-    .category-card { position: relative; height: 350px; border-radius: 4px; overflow: hidden; background: #eee; }
-    .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .category-card:hover img { transform: scale(1.06); }
-    .category-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%); display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; color: var(--color-white); }
-    .category-name { font-family: var(--font-heading); font-size: 22px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
-    .category-desc { font-size: 12px; color: #ddd; margin-bottom: 16px; }
-
-    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; margin-bottom: 60px; }
-    .product-card { background: var(--color-white); border: 1px solid var(--color-border); border-radius: 4px; overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative; display: flex; flex-direction: column; }
-    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px var(--color-shadow); }
-    .product-image-wrap { position: relative; aspect-ratio: 3/4; background: #f5f5f5; overflow: hidden; }
-    .product-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .product-card:hover .product-image { transform: scale(1.05); }
-    .wishlist-btn { position: absolute; top: 12px; right: 12px; background: rgba(255, 255, 255, 0.9); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); transition: background 0.2s ease; }
-    .wishlist-btn:hover { background: var(--color-white); }
-    .wishlist-btn.active svg { fill: var(--color-accent); stroke: var(--color-accent); }
-    .product-tag { position: absolute; top: 12px; left: 12px; background: var(--color-black); color: var(--color-white); font-size: 9px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 4px 8px; border-radius: 2px; }
-    .product-info { padding: 16px; display: flex; flex-direction: column; flex-grow: 1; }
-    .product-category { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--color-secondary-text); margin-bottom: 4px; }
-    .product-name { font-size: 14px; font-weight: 700; color: var(--color-black); margin-bottom: 6px; }
-    .product-fabric { font-size: 11px; color: #777; margin-bottom: 8px; }
-    .product-price-row { display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 8px; }
-    .price-current { font-size: 15px; font-weight: 800; color: var(--color-black); }
-    .price-original { font-size: 12px; color: #999; text-decoration: line-through; }
-    .add-cart-btn { margin-top: 12px; width: 100%; padding: 10px; background: var(--color-black); color: var(--color-white); font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; border: 1px solid var(--color-black); transition: all 0.2s ease; }
-    .add-cart-btn:hover { background: var(--color-white); color: var(--color-black); }
-
-    .trust-bar { background: var(--color-bg-secondary); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 40px 0; margin: 60px 0; }
-    .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; text-align: center; }
-    .trust-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--color-white); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
-    .trust-title { font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
-    .trust-desc { font-size: 11px; color: var(--color-secondary-text); margin-top: 4px; }
-
-    /* OVERLAYS & MODALS */
-    .drawer-overlay { position: fixed; inset: 0; background: var(--color-overlay); backdrop-filter: blur(4px); z-index: 200; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-    .drawer-overlay.active { opacity: 1; visibility: visible; }
-    
-    /* CART & WISHLIST DRAWERS */
-    .side-drawer { position: fixed; top: 0; right: 0; width: 100%; max-width: 440px; height: 100%; background: var(--color-white); z-index: 210; transform: translateX(100%); transition: transform 0.3s ease; display: flex; flex-direction: column; box-shadow: -10px 0 30px rgba(0,0,0,0.15); }
-    .side-drawer.active { transform: translateX(0); }
-    .drawer-header { padding: 16px 24px; border-bottom: 1px solid var(--color-border); display: flex; align-items: center; justify-content: space-between; }
-    .drawer-title { font-size: 16px; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; }
-    .drawer-body { padding: 16px 24px; flex-grow: 1; overflow-y: auto; }
-    .drawer-footer { padding: 24px; border-top: 1px solid var(--color-border); background: var(--color-bg-secondary); }
-
-    /* POLICY MODAL POPUP */
-    .policy-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(5px); z-index: 300; display: none; align-items: center; justify-content: center; padding: 20px; }
-    .policy-modal { background: #fff; width: 100%; max-width: 800px; max-height: 85vh; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
-    .policy-modal-header { background: #000; color: #fff; padding: 20px 28px; display: flex; justify-content: space-between; align-items: center; }
-    .policy-modal-title { font-family: var(--font-heading); font-size: 18px; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; }
-    .policy-modal-body { padding: 28px; overflow-y: auto; font-size: 14px; color: #333; line-height: 1.7; }
-    .policy-highlight { background: #e8f5e9; border-left: 4px solid #2e7d32; padding: 14px; margin: 16px 0; font-weight: 700; color: #1b5e20; }
-
-    .icon-btn-close { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: background 0.2s; cursor: pointer; }
-    .icon-btn-close:hover { background: rgba(0,0,0,0.08); }
-    .icon-btn-close-dark:hover { background: rgba(255,255,255,0.2); }
-
-    /* FOOTER */
-    .footer { background-color: var(--color-black); color: var(--color-white); padding: 60px 0 30px; }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; margin-bottom: 40px; }
-    .footer-col-title { font-family: var(--font-heading); font-size: 13px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; color: var(--color-white); }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a, .footer-links button { font-size: 12px; color: #aaaaaa; text-align: left; background: none; border: none; padding: 0; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-    .footer-links a:hover, .footer-links button:hover { color: var(--color-white); }
-    .footer-ownership { background: #111; padding: 16px; text-align: center; border-radius: 4px; margin-bottom: 24px; font-size: 13px; color: #fff; font-weight: 700; border: 1px solid #333; }
-    .footer-bottom { text-align: center; font-size: 11px; color: #777; border-top: 1px solid #222; padding-top: 24px; }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- PROMO BAR -->
+  <!-- PROMO TOP BAR -->
   <div class="promo-bar">
     Orders Delivered Within 3 to 7 Business Days Across India | Call / WhatsApp: +91 8766882442
   </div>
@@ -151,11 +16,24 @@
   <!-- HEADER NAVBAR -->
   <header class="header">
     <div class="container nav-container">
-      <a href="index.html" class="logo-brand">
-        CLASSIC
-        <span class="logo-subtext">COLLECTIONS</span>
-      </a>
+      
+      <div class="nav-left-group">
+        <!-- HAMBURGER MENU BUTTON (MOBILE) -->
+        <button class="mobile-hamburger-btn" id="hamburgerTrigger" title="Open Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
 
+        <a href="index.html" class="logo-brand">
+          CLASSIC
+          <span class="logo-subtext">COLLECTIONS</span>
+        </a>
+      </div>
+
+      <!-- DESKTOP MENU -->
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link active">Home</a></li>
         
@@ -192,8 +70,8 @@
         <li><a href="contact-us.html" class="nav-link">Contact</a></li>
       </ul>
 
+      <!-- HEADER ACTIONS -->
       <div class="nav-actions">
-        <!-- WISHLIST TRIGGER MODAL BUTTON -->
         <button class="action-btn" id="wishlistTrigger" title="Saved Wishlist Items">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
@@ -201,7 +79,6 @@
           <span class="badge-count wishlist-count-badge">0</span>
         </button>
 
-        <!-- CART TRIGGER DRAWER BUTTON -->
         <button class="action-btn" id="cartTrigger" title="Shopping Cart">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path>
@@ -214,12 +91,12 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO BANNERS -->
   <section class="hero-banner">
     <div class="container">
       <h1 class="hero-title">LUXURY IN EVERY THREAD</h1>
       <p class="hero-subtitle">Discover handcrafted Khadi (₹600), Mulberry Silk (₹350), Linen & Premium Cotton Shirts tailored for distinction.</p>
-      <div style="display: flex; justify-content: center; gap: 16px;">
+      <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
         <a href="products.html?type=Formal" class="btn-primary btn-white">Shop Men Formal</a>
         <a href="products.html?type=Casual" class="btn-primary">Shop Men Casual</a>
       </div>
@@ -298,6 +175,47 @@
   <!-- OVERLAY FOR DRAWERS & MODALS -->
   <div class="drawer-overlay" id="overlay"></div>
 
+  <!-- MOBILE SLIDE-OUT NAVIGATION MENU DRAWER -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-header">
+      <div style="font-family: var(--font-heading); font-size: 16px; font-weight: 900; letter-spacing: 2px;">CLASSIC MENU</div>
+      <button class="icon-btn-close" id="closeMobileNavBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div class="mobile-drawer-body">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item"><a href="index.html">Homepage</a></li>
+        <li class="mobile-nav-item"><a href="products.html">All Men Collection</a></li>
+        
+        <li class="mobile-nav-subhead">Formal Wear Patterns</li>
+        <li class="mobile-nav-item"><a href="products.html?type=Formal&pattern=Whites">Whites Formal</a></li>
+        <li class="mobile-nav-item"><a href="products.html?type=Formal&pattern=Plain">Plain Formal</a></li>
+        <li class="mobile-nav-item"><a href="products.html?type=Formal&pattern=Strips">Strips (Stripes)</a></li>
+        <li class="mobile-nav-item"><a href="products.html?type=Formal&pattern=Checks">Checks Formal</a></li>
+        <li class="mobile-nav-item"><a href="products.html?type=Formal&pattern=Prints">Prints Formal</a></li>
+
+        <li class="mobile-nav-subhead">Casual Wear Patterns</li>
+        <li class="mobile-nav-item"><a href="products.html?type=Casual&pattern=Checks">Checks Casual</a></li>
+        <li class="mobile-nav-item"><a href="products.html?type=Casual&pattern=Whites">Whites Casual</a></li>
+        <li class="mobile-nav-item"><a href="products.html?type=Casual&pattern=Solid">Solid Casual</a></li>
+        <li class="mobile-nav-item"><a href="products.html?type=Casual&pattern=Prints">Prints Casual</a></li>
+
+        <li class="mobile-nav-subhead">Fine Fabrics</li>
+        <li class="mobile-nav-item"><a href="products.html?fabric=Khadi">Hand-spun Khadi (₹600)</a></li>
+        <li class="mobile-nav-item"><a href="products.html?fabric=Silk">Mulberry Silk (₹350)</a></li>
+        <li class="mobile-nav-item"><a href="products.html?fabric=Cotton">Pure Cotton</a></li>
+        <li class="mobile-nav-item"><a href="products.html?fabric=Linen">French Linen</a></li>
+
+        <li class="mobile-nav-subhead">Corporate & Legal</li>
+        <li class="mobile-nav-item"><a href="about-us.html">About Us</a></li>
+        <li class="mobile-nav-item"><a href="contact-us.html">Contact Support</a></li>
+        <li class="mobile-nav-item"><a href="checkout.html">Checkout Page</a></li>
+        <li class="mobile-nav-item"><a href="admin.html">Admin Console</a></li>
+      </ul>
+    </div>
+  </div>
+
   <!-- SHOPPING CART DRAWER -->
   <div class="side-drawer" id="cartDrawer">
     <div class="drawer-header">
@@ -331,7 +249,7 @@
     </div>
   </div>
 
-  <!-- INTERACTIVE POLICY POPUP MODAL -->
+  <!-- POLICY MODAL POPUP -->
   <div class="policy-modal-overlay" id="policyModalOverlay">
     <div class="policy-modal">
       <div class="policy-modal-header">
@@ -345,6 +263,38 @@
       </div>
     </div>
   </div>
+
+  <!-- STICKY BOTTOM MOBILE APP TASKBAR -->
+  <nav class="bottom-app-taskbar" id="bottomAppTaskbar">
+    <div class="bottom-taskbar-grid">
+      <a href="index.html" class="taskbar-item active">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        <span>Home</span>
+      </a>
+
+      <a href="products.html" class="taskbar-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span>Shop</span>
+      </a>
+
+      <button class="taskbar-item" onclick="toggleDrawer('wishlistDrawer', true)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path></svg>
+        <span class="taskbar-badge wishlist-count-badge">0</span>
+        <span>Wishlist</span>
+      </button>
+
+      <button class="taskbar-item" onclick="toggleDrawer('cartDrawer', true)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 01-8 0"></path></svg>
+        <span class="taskbar-badge cart-count-badge">0</span>
+        <span>Bag</span>
+      </button>
+
+      <a href="contact-us.html" class="taskbar-item">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Support</span>
+      </a>
+    </div>
+  </nav>
 
   <!-- FOOTER -->
   <footer class="footer">
@@ -506,7 +456,7 @@
         drawer.classList.add('active');
       } else {
         overlay.classList.remove('active');
-        document.querySelectorAll('.side-drawer').forEach(d => d.classList.remove('active'));
+        document.querySelectorAll('.side-drawer, .mobile-nav-drawer').forEach(d => d.classList.remove('active'));
       }
     }
 
@@ -623,6 +573,9 @@
       renderCart();
       renderWishlistDrawer();
       renderFeatured();
+
+      document.getElementById('hamburgerTrigger')?.addEventListener('click', () => toggleDrawer('mobileNavDrawer', true));
+      document.getElementById('closeMobileNavBtn')?.addEventListener('click', () => toggleDrawer('mobileNavDrawer', false));
 
       document.getElementById('cartTrigger')?.addEventListener('click', () => toggleDrawer('cartDrawer', true));
       document.getElementById('closeCartBtn')?.addEventListener('click', () => toggleDrawer('cartDrawer', false));
