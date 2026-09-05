@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Browse Classic Collection Solapur cloth materials — Men's Formal, Casual, Cotton, Linen, Khadi and Silk fabrics." />
+    <title>All Fabrics Catalog | Classic Collection Solapur</title>
+    <link rel="stylesheet" href="/css/global.css" />
+    <script type="module" src="/js/pages/listing.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app-main">Skip to content</a>
+    <div id="app-announcement"></div>
+    <div id="app-header"></div>
+    <main id="app-main" class="app-main" tabindex="-1">
+      <section class="listing-head" aria-labelledby="listing-title" style="max-width: 1280px; margin: 24px auto 16px; padding: 0 24px;">
+        <p class="eyebrow" style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--color-text-muted); font-weight: 700;">Classic Collection Solapur</p>
+        <div class="listing-head__row" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h1 class="listing-title" id="listing-title" data-listing-heading style="font-family: var(--font-family-heading); font-size: clamp(1.8rem, 3.5vw, 2.5rem); text-transform: uppercase; margin-bottom: 4px;">All Cloth Materials</h1>
+            <p class="listing-subtitle" data-listing-subtitle style="color: var(--color-text-muted); font-size: 14px;">Men's Formal & Casual fabrics — Cotton, Linen, Khadi, Silk & Linen Cotton.</p>
+          </div>
+          <p class="listing-count" data-listing-status aria-live="polite" style="font-size: 13px; font-weight: 600;"></p>
+        </div>
+      </section>
+
+      <div class="filter-bar" data-filter-bar style="max-width: 1280px; margin: 0 auto; padding: 0 24px;"></div>
+      <div class="active-filters" data-active-filters hidden style="max-width: 1280px; margin: 0 auto; padding: 0 24px;"></div>
+      <section class="filter-panel" id="listing-filter-panel" data-filter-panel aria-label="Product filters" hidden style="max-width: 1280px; margin: 0 auto; padding: 0 24px;"></section>
+
+      <section class="catalog-section" aria-label="Product results" style="max-width: 1280px; margin: 0 auto; padding: 0 24px 64px;">
+        <div class="product-grid" data-listing-grid></div>
+        <div class="listing-state" data-listing-state hidden></div>
+
+        <nav class="pagination" aria-label="Product pagination" data-pagination hidden style="margin-top: 40px; display: flex; justify-content: center; gap: 16px; align-items: center;">
+          <button class="button button--ghost" type="button" data-prev-page>Previous</button>
+          <p class="pagination__status" data-pagination-status style="font-size: 14px; font-weight: 600;"></p>
+          <button class="button button--ghost" type="button" data-next-page>Next</button>
+        </nav>
+      </section>
+    </main>
+    <div id="app-footer"></div>
+    <div id="app-bottom-nav"></div>
+    <div id="app-toast" class="toast-region" aria-live="polite" aria-relevant="additions removals"></div>
+  </body>
+</html>

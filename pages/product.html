@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="View cloth material details — Classic Collection Solapur (classicsolapur.com)." />
+    <title>Cloth Material Details | Classic Collection Solapur</title>
+    <link rel="stylesheet" href="/css/global.css" />
+    <script type="module" src="/js/pages/product.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app-main">Skip to content</a>
+    <div id="app-announcement"></div>
+    <div id="app-header"></div>
+    <main id="app-main" class="app-main" tabindex="-1" style="max-width: 1280px; margin: 0 auto; padding: 24px;">
+      <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom: 24px;">
+        <a class="breadcrumb__link" href="/pages/listing.html">Catalog</a>
+        <span class="breadcrumb__separator" aria-hidden="true">/</span>
+        <span data-breadcrumb-category></span>
+        <span class="breadcrumb__separator" aria-hidden="true" data-breadcrumb-category-separator hidden>/</span>
+        <span class="breadcrumb__current" data-breadcrumb-current aria-current="page">Product</span>
+      </nav>
+
+      <div class="product-detail-skeleton" data-product-skeleton hidden></div>
+
+      <section class="product-detail" data-product-detail aria-busy="true" hidden>
+        <div class="product-gallery" data-product-gallery></div>
+
+        <div class="product-detail__info">
+          <p class="product-detail__meta" data-product-meta style="font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--color-text-muted); font-weight: 700;"></p>
+          <h1 class="product-detail__title" data-product-name style="font-family: var(--font-family-heading); font-size: clamp(1.8rem, 3vw, 2.4rem); margin: 8px 0;">Loading product…</h1>
+          <p class="product-detail__price" data-product-price style="font-size: 1.5rem; font-weight: 700; margin-bottom: 12px;"></p>
+          <p class="product-detail__stock" data-product-stock role="status" style="margin-bottom: 16px;"></p>
+          <p class="product-detail__description" data-product-description style="line-height: 1.7; color: var(--color-text-muted); margin-bottom: 24px;"></p>
+
+          <div class="product-detail__quantity" data-product-quantity hidden style="margin-bottom: 24px;">
+            <span class="product-detail__quantity-label" id="product-quantity-label">Quantity</span>
+            <div data-quantity-mount></div>
+          </div>
+
+          <div class="product-detail__actions" style="display: flex; gap: 12px;">
+            <button class="button" type="button" data-add-to-cart disabled>Add to Cart</button>
+            <button class="button button--ghost" type="button" data-buy-now disabled>Buy Now</button>
+          </div>
+          <p class="product-detail__note" data-product-note hidden style="margin-top: 12px; font-size: 13px; color: var(--color-text-muted);"></p>
+        </div>
+      </section>
+
+      <div class="listing-state" data-product-state hidden></div>
+    </main>
+    <div id="app-footer"></div>
+    <div id="app-bottom-nav"></div>
+    <div id="app-toast" class="toast-region" aria-live="polite" aria-relevant="additions removals"></div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Review cloth materials in your shopping bag — Classic Collection Solapur (classicsolapur.com)." />
+    <title>Shopping Bag | Classic Collection Solapur</title>
+    <link rel="stylesheet" href="/css/global.css" />
+    <script type="module" src="/js/pages/cart.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#app-main">Skip to content</a>
+    <div id="app-header"></div>
+    <main id="app-main" class="app-main" tabindex="-1" style="max-width: 1280px; margin: 24px auto 64px; padding: 0 24px;">
+      <section class="listing-head" aria-labelledby="cart-title" style="margin-bottom: 24px;">
+        <p class="eyebrow" style="font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--color-text-muted); font-weight: 700;">Classic Collection Solapur</p>
+        <div class="listing-head__row" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <h1 class="listing-title" id="cart-title" style="font-family: var(--font-family-heading); font-size: clamp(1.8rem, 3.5vw, 2.5rem); text-transform: uppercase; margin-bottom: 4px;">Shopping Bag</h1>
+            <p class="listing-subtitle" style="color: var(--color-text-muted); font-size: 14px;">Review your fabric selections before proceeding to order checkout.</p>
+          </div>
+          <p class="listing-count" data-cart-status aria-live="polite" style="font-size: 13px; font-weight: 600;"></p>
+        </div>
+      </section>
+
+      <section class="cart-section" aria-label="Cart items">
+        <div class="cart-skeleton" data-cart-skeleton hidden></div>
+        <div class="cart-list" data-cart-items></div>
+        <div class="listing-state" data-cart-state hidden></div>
+
+        <div class="cart-summary" data-cart-summary hidden style="background: var(--color-surface-subtle); border: 1px solid var(--color-border); border-radius: 8px; padding: 24px; margin-top: 32px;">
+          <div class="cart-summary__row" style="display: flex; justify-content: space-between; align-items: center; font-size: 1.25rem; margin-bottom: 12px;">
+            <span class="cart-summary__label" data-subtotal-label style="font-weight: 600;">Subtotal</span>
+            <strong class="cart-summary__value" data-subtotal style="font-size: 1.5rem;">₹0</strong>
+          </div>
+          <p class="cart-summary__note" style="font-size: 12.5px; color: var(--color-text-muted); margin-bottom: 20px;">Shipping address is confirmed at checkout. Delivery fee applied per store policy.</p>
+          <div class="cart-summary__actions" style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a class="button button--ghost" href="/pages/listing.html">Continue Shopping</a>
+            <button class="button" type="button" data-checkout>Proceed to Checkout →</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="app-footer"></div>
+    <div id="app-bottom-nav"></div>
+    <div id="app-toast" class="toast-region" aria-live="polite" aria-relevant="additions removals"></div>
+  </body>
+</html>
