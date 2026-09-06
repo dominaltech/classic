@@ -1,30 +1,20 @@
 import { createClient } from '@supabase/supabase-js';
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const SUPABASE_URL =
+  import.meta.env.VITE_SUPABASE_URL ||
+  'https://mizbiarhnxzrpfuodqnj.supabase.co';
 
-/**
- * Returns an environment variable value or throws a developer-readable error.
- * @param {string | undefined} value - Variable value.
- * @param {string} name - Variable name.
- * @returns {string} Non-empty environment variable value.
- */
-function requireEnv(value, name) {
-  if (!value || String(value).trim() === '') {
-    throw new Error(
-      `Missing ${name}. Create .env from .env.example, fill in the Supabase project values, and restart the Vite dev server.`,
-    );
-  }
-
-  return String(value).trim();
-}
+const SUPABASE_KEY =
+  import.meta.env.VITE_SUPABASE_ANON_KEY ||
+  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1pemJpYXJobnh6cnBmdW9kcW5qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0OTg3NTYsImV4cCI6MjEwNDA3NDc1Nn0.plMkDTZJ7wy2D6yLWtRmJU_gvJ9z-zZYXumbOlWHCrU';
 
 /**
  * Shared Supabase browser client. This is the only module allowed to call createClient.
  */
 export const supabase = createClient(
-  requireEnv(SUPABASE_URL, 'VITE_SUPABASE_URL'),
-  requireEnv(SUPABASE_KEY, 'VITE_SUPABASE_ANON_KEY (or VITE_SUPABASE_PUBLISHABLE_KEY)'),
+  SUPABASE_URL,
+  SUPABASE_KEY,
   {
     auth: {
       persistSession: true,
