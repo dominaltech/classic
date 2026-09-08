@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashfree Checkout — Classic Collection Solapur</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="urbanlogo.jpeg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="urbanlogo.jpeg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+  <style>
+    .pay-container {
+      max-width: 520px;
+      margin: 60px auto;
+      padding: 36px 28px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .spinner {
+      width: 44px;
+      height: 44px;
+      border: 4px solid var(--border);
+      border-top-color: var(--black);
+      border-radius: 50%;
+      animation: spin 1s infinite linear;
+      margin: 24px auto;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .pay-btn-group {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      width: 100%;
+    }
+    .btn-pay-primary {
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--black);
+      color: #fff;
+      border: none;
+      font-weight: 800;
+      font-size: 12.5px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-pay-primary:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+    .btn-pay-secondary {
+      width: 100%;
+      padding: 12px 24px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-dark);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-pay-secondary:hover {
+      background: #f5f5f5;
+    }
+    .btn-cancel-pay {
+      background: transparent;
+      color: #777;
+      border: none;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: underline;
+      margin-top: 6px;
+    }
+    .btn-cancel-pay:hover {
+      color: #d90429;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <nav class="navbar">
+    <a href="index.html" class="logo">
+      <img src="images/logo.jpg" alt="Classic Collection Solapur Logo" class="logo-img" style="height:38px;width:auto;object-fit:contain;" />
+      <span class="logo-wordmark">Classic Collection Solapur</span>
+    </a>
+    <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">🔒 PAYMENT GATEWAY</div>
+  </nav>
+</header>
+
+<main class="section">
+  <div class="pay-container">
+    <div style="font-size:32px; margin-bottom: 8px;">⚡</div>
+    <h2 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 800; text-transform: uppercase;">CASHFREE PAYMENTS</h2>
+    <p style="color: var(--text-muted); margin-top: 6px; font-size: 13px;">Connecting to Cashfree UPI / Cards / Netbanking gateway...</p>
+    
+    <div class="spinner" id="paySpinner"></div>
+    <div id="statusTxt" style="font-weight: 700; font-size: 14px; margin-top: 14px; color: #222;">Initializing order...</div>
+    
+    <div class="pay-btn-group" id="payButtonGroup">
+      <button id="retryBtn" class="btn-pay-primary" style="display:none;" onclick="startCashfreeCheckout()">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+        RESTART PAYMENT / RETRY NOW
+      </button>
+      <a href="cart.html" id="cartBtn" class="btn-pay-secondary" style="display:none;">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        RETURN TO CART / BUY NOW
+      </a>
+      <button type="button" class="btn-cancel-pay" onclick="cancelAndReturn()">✕ CANCEL PAYMENT &amp; RETURN</button>
+    </div>
+  </div>
+</main>
+
+<script>
+  let currentOrderId = '';
+  let autoTimeoutId = null;
+
+  async function cancelAndReturn() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = currentOrderId || urlParams.get('order_id');
+    if (orderId) {
+      try {
+        fetch('/api/verify-cashfree-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ order_id: orderId, is_explicit_cancel: true })
+        }).catch(() => {});
+      } catch(e) {}
+      window.location.href = `order-success.html?order_id=${encodeURIComponent(orderId)}&status=CANCELLED`;
+    } else {
+      window.location.href = 'cart.html';
+    }
+  }
+
+  function showManualActionButtons(message) {
+    const spinner = document.getElementById('paySpinner');
+    const statusTxt = document.getElementById('statusTxt');
+    const retryBtn = document.getElementById('retryBtn');
+    const cartBtn = document.getElementById('cartBtn');
+
+    if (spinner) spinner.style.display = 'none';
+    if (statusTxt) statusTxt.textContent = message || 'You can retry payment or return to your cart:';
+    if (retryBtn) retryBtn.style.display = 'inline-flex';
+    if (cartBtn) cartBtn.style.display = 'inline-flex';
+  }
+
+  async function startCashfreeCheckout() {
+    const spinner = document.getElementById('paySpinner');
+    const retryBtn = document.getElementById('retryBtn');
+    const cartBtn = document.getElementById('cartBtn');
+
+    if (spinner) spinner.style.display = 'block';
+    if (retryBtn) retryBtn.style.display = 'none';
+    if (cartBtn) cartBtn.style.display = 'none';
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderId = urlParams.get('order_id') || 'CC-' + Math.floor(100000 + Math.random() * 900000);
+    const amount = urlParams.get('amount') || '1.00';
+    const sessionId = urlParams.get('session_id');
+    currentOrderId = orderId;
+
+    document.getElementById('statusTxt').textContent = `Setting up order #${orderId} (₹${amount})...`;
+
+    // ⏱️ Auto-fallback timer: If gateway does not launch within 5s, present clear retry/cart buttons
+    if (autoTimeoutId) clearTimeout(autoTimeoutId);
+    autoTimeoutId = setTimeout(() => {
+      showManualActionButtons('Payment gateway taking longer than expected? You can restart or return to your bag.');
+    }, 5000);
+
+    // Retrieve cached customer details from session
+    let customer = {
+      customer_id: 'cust_' + Date.now(),
+      customer_name: 'Classic Customer',
+      customer_email: 'support@classicsolapur.com',
+      customer_phone: '9876543210'
+    };
+
+    try {
+      const raw = sessionStorage.getItem('ur_last_order');
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (parsed.customer_name) customer.customer_name = parsed.customer_name;
+        if (parsed.customer_email) customer.customer_email = parsed.customer_email;
+        if (parsed.customer_phone) customer.customer_phone = parsed.customer_phone;
+      }
+    } catch (e) {}
+
+    try {
+      const isProd = window.UR_CONFIG && window.UR_CONFIG.CASHFREE_ENV === 'PRODUCTION';
+      const cashfree = Cashfree({
+        mode: isProd ? 'production' : 'sandbox'
+      });
+
+      if (sessionId) {
+        document.getElementById('statusTxt').textContent = 'Launching Cashfree Checkout...';
+        cashfree.checkout({
+          paymentSessionId: sessionId,
+          redirectTarget: "_self"
+        });
+        return;
+      }
+
+      const response = await fetch('/api/create-cashfree-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          order_id: orderId,
+          order_amount: amount,
+          order_currency: 'INR',
+          customer_details: customer
+        })
+      });
+
+      const resData = await response.json();
+
+      if (resData && resData.payment_session_id) {
+        document.getElementById('statusTxt').textContent = 'Opening Cashfree Gateway...';
+        cashfree.checkout({
+          paymentSessionId: resData.payment_session_id,
+          redirectTarget: "_self"
+        });
+      } else {
+        console.warn('Cashfree order response:', resData);
+        if (autoTimeoutId) clearTimeout(autoTimeoutId);
+        showManualActionButtons('Unable to open gateway automatically. Click below to retry:');
+      }
+    } catch (err) {
+      console.error('Cashfree SDK Error:', err);
+      if (autoTimeoutId) clearTimeout(autoTimeoutId);
+      showManualActionButtons('Connection interrupted. Click below to restart payment:');
+    }
+  }
+
+  window.addEventListener('pageshow', function() {
+    showManualActionButtons('Returned from payment gateway. You can restart or view your bag:');
+  });
+
+  document.addEventListener('DOMContentLoaded', startCashfreeCheckout);
+</script>
+</body>
+</html>

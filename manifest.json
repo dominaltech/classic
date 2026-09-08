@@ -1,0 +1,22 @@
+{
+  "name": "Classic Collection Solapur",
+  "short_name": "Classic Collection Solapur",
+  "description": "Excellence in Fine Fabric & Cloth Materials",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "images/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

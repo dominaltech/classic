@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All Collection — Classic Collection Solapur</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="urbanlogo.jpeg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="urbanlogo.jpeg">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="main.js"></script>
+  <style>
+    .filter-pills-wrapper {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 16px 0;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .filter-pills-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+    .filter-pill {
+      white-space: nowrap;
+      padding: 10px 18px;
+      border-radius: 30px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-pill.active {
+      background: var(--black);
+      color: #ffffff;
+      border-color: var(--black);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  <div class="announce-ticker">
+    <div class="announce-ticker-track">
+      <span>Easy <strong>2-Day Returns</strong></span>
+      <span>New Arrivals <strong>Every Week</strong></span>
+      <span>Excellence in <strong>Cloth Materials</strong></span>
+      <span>100% Premium <strong>Cloth Material</strong></span>
+    </div>
+  </div>
+  <div class="announce-links">
+    <a href="my-orders.html">Track Order</a>
+    <a href="contact.html">Contact Us</a>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header" id="siteHeader">
+  <nav class="navbar">
+    <button class="nav-icon-btn js-hamburger-open" aria-label="Open menu" onclick="openCatDrawer()">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="images/logo.jpg" alt="Classic Collection Solapur Logo" class="logo-img" style="height:38px;width:auto;object-fit:contain;" />
+      <span class="logo-wordmark">Classic Collection Solapur</span>
+    </a>
+        <div class="nav-links">
+      <div class="nav-item"><a href="shop.html" class="nav-link">All Materials</a></div>
+      <div class="nav-item"><a href="suiting.html" class="nav-link">Suiting</a></div>
+      <div class="nav-item"><a href="shirting.html" class="nav-link">Shirting</a></div>
+      <div class="nav-item"><a href="cotton.html" class="nav-link">Cotton</a></div>
+      <div class="nav-item"><a href="linen.html" class="nav-link">Linen</a></div>
+      <div class="nav-item"><a href="khadi.html" class="nav-link">Khadi</a></div>
+      <div class="nav-item"><a href="silk.html" class="nav-link">Silk</a></div>
+    </div>
+      <div class="nav-item"><a href="plan-tshirt.html" class="nav-link">Plan T-shirt</a></div>
+      <div class="nav-item"><a href="printing-tshirt.html" class="nav-link">Printing T-shirt</a></div>
+      <div class="nav-item"><a href="oversize.html" class="nav-link">Oversize</a></div>
+      <div class="nav-item"><a href="hoodies.html" class="nav-link">Hoodies</a></div>
+      <div class="nav-item"><a href="pants.html" class="nav-link">Pants</a></div>
+      <div class="nav-item"><a href="baggy.html" class="nav-link">Baggy</a></div>
+      <!-- <div class="nav-item"><a href="women.html" class="nav-link">Women</a></div> -->
+    </div>
+    <div class="nav-icons">
+      <button class="nav-icon-btn js-search-open" aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <a href="signin.html" class="nav-icon-btn" aria-label="Account">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </a>
+      <a href="cart.html" class="nav-icon-btn js-cart-open" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="icon-badge cart-count cart-count-badge" style="display:none;">0</span>
+      </a>
+    </div>
+  </nav>
+</header>
+
+<!-- HAMBURGER DRAWER -->
+<div class="hamburger-overlay" id="hamburgerOverlay">
+  <div class="hamburger-drawer">
+    <div class="ham-head">
+      <img src="images/logo.jpg" alt="Classic Collection Solapur" style="height:32px;" />
+      <span class="logo-wordmark">Classic Collection Solapur</span>
+      <button class="ham-close" onclick="closeCatDrawer()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="ham-body">
+      <a href="index.html" class="ham-link">Home</a>
+      <a href="shop.html" class="ham-link active">All Products Catalog</a>
+      <div class="ham-cat-title">Categories</div>
+            <div class="ham-sublinks">
+        <a href="suiting.html">Suiting Material</a>
+        <a href="shirting.html">Shirting Cloth</a>
+        <a href="cotton.html">Pure Cotton</a>
+        <a href="linen.html">Pure Linen</a>
+        <a href="khadi.html">Handloom Khadi</a>
+        <a href="silk.html">Royal Silk</a>
+      </div>
+      <div class="ham-divider"></div>
+      <a href="my-orders.html" class="ham-link">My Orders</a>
+      <a href="cart.html" class="ham-link">My Shopping Bag</a>
+      <a href="about.html" class="ham-link">About Us</a>
+      <a href="policy.html" class="ham-link">Policy</a>
+      <a href="contact.html" class="ham-link">Contact Us</a>
+      <a href="signin.html" class="ham-link">Account / Sign In</a>
+    </div>
+  </div>
+</div>
+
+<!-- SEARCH & CATEGORY PILLS BAR -->
+<div style="background: var(--bg); border-bottom: 1px solid var(--border); padding: 20px 24px 10px;">
+  <div style="max-width: var(--container-max); margin: 0 auto;">
+    <div style="position: relative; margin-bottom: 14px;">
+      <input type="text" id="shopSearch" placeholder="Search oversized tees, linen pants, baggy denim, hoodies..." oninput="filterProducts()" style="width: 100%; padding: 12px 18px 12px 46px; border: 1px solid var(--border-dark); border-radius: 30px; font-size: 0.9rem; outline: none; background: var(--bg-secondary);">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+    <div class="filter-pills-wrapper" id="filterPills">
+      <button class="filter-pill active" onclick="selectCategory('all', this)">ALL PRODUCTS</button>
+      <button class="filter-pill" onclick="selectCategory('oversized', this)">🔥 OVERSIZED</button>
+      <button class="filter-pill" onclick="selectCategory('baggy', this)">👖 BAGGY DENIM</button>
+      <button class="filter-pill" onclick="selectCategory('pants', this)">🌿 LINEN PANTS</button>
+      <button class="filter-pill" onclick="selectCategory('plain-tshirts', this)">👕 PLAIN TEES</button>
+      <button class="filter-pill" onclick="selectCategory('printed-tshirts', this)">🎨 PRINTED</button>
+      <button class="filter-pill" onclick="selectCategory('hoodies', this)">🧥 HOODIES</button>
+    </div>
+  </div>
+</div>
+
+<main class="section" style="padding-top: 32px;">
+  <div class="container">
+    <!-- DYNAMIC CATEGORY HERO BANNER -->
+    <div id="shopCatBanner" style="display:none; margin-bottom: 28px; border-radius: 4px; overflow: hidden; height: 180px; position: relative; background-size: cover; background-position: center; border: 1px solid var(--border);">
+      <div style="position: absolute; inset: 0; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7));"></div>
+      <div style="position: absolute; bottom: 20px; left: 24px; color: #fff; z-index: 1;">
+        <h3 id="shopCatBannerTitle" style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;"></h3>
+        <p id="shopCatBannerDesc" style="font-size: 0.85rem; opacity: 0.85; max-width: 600px; margin: 0;"></p>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+      <h2 id="activeCategoryTitle" style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; text-transform: uppercase;">ALL STREETWEAR COLLECTION</h2>
+      <span id="productCountBadge" style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);">Loading items...</span>
+    </div>
+
+    <div class="product-grid" id="shopGrid">
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="footer-logo-row logo">
+          <img src="images/logo.jpg" alt="Classic Collection Solapur" class="logo-img" style="height:38px;width:auto;object-fit:contain;" />
+          <span class="logo-wordmark">Classic Collection Solapur</span>
+        </a>
+        <p class="footer-desc">Excellence in Fine Fabric & Cloth Materials Premium streetwear crafted for the bold generation. Quality you can feel, style you can own.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <div class="footer-links">
+          <a href="about.html">About Us</a>
+          <a href="policy.html">Policy</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Need Help</div>
+        <div class="footer-links">
+          <a href="policy.html">Shipping Policy</a>
+          <a href="policy.html">Return &amp; Exchange</a>
+          <a href="policy.html">Privacy Policy</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Support</div>
+        <div class="footer-contact-row">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>support@classicsolapur.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Classic Collection Solapur. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-taskbar">
+  <a href="index.html" class="taskbar-tab">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span>Home</span>
+  </a>
+  <a href="shop.html" class="taskbar-tab active">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    <span>Shop</span>
+  </a>
+  <a href="cart.html" class="taskbar-tab">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <span class="badge-pip cart-count-badge" style="display:none; top: 4px; right: 20%;">0</span>
+    <span>Cart</span>
+  </a>
+  <a href="my-orders.html" class="taskbar-tab">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+    <span>Orders</span>
+  </a>
+  <a href="signin.html" class="taskbar-tab">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span>Profile</span>
+  </a>
+</nav>
+
+<script>
+  let rawProducts = [];
+  let activeCategorySlug = 'all';
+  let activeCategories = [];
+
+  async function loadShopCategories() {
+    const filterContainer = document.getElementById('filterPills');
+    if (!filterContainer) return;
+
+    try {
+      const categories = await window.fetchStoreCategories();
+      activeCategories = (categories || []).filter(c => c.slug !== 'test-items' && c.slug !== 'women' && !(c.name || '').toLowerCase().includes('test') && !(c.name || '').toLowerCase().includes('women'));
+
+      if (activeCategories.length > 0) {
+        let pillsHtml = `<button class="filter-pill ${activeCategorySlug === 'all' ? 'active' : ''}" onclick="selectCategory('all', this)">ALL PRODUCTS</button>`;
+        activeCategories.forEach(cat => {
+          const isAct = activeCategorySlug === cat.slug || activeCategorySlug === cat.id;
+          pillsHtml += `<button class="filter-pill ${isAct ? 'active' : ''}" onclick="selectCategory('${cat.slug || cat.id}', this)">${cat.name.toUpperCase()}</button>`;
+        });
+        filterContainer.innerHTML = pillsHtml;
+      }
+    } catch(err) {
+      console.error('loadShopCategories error:', err);
+    }
+  }
+
+  async function loadShopData() {
+    const grid = document.getElementById('shopGrid');
+    const client = window.urSupabase || (window.supabase && typeof window.supabase.createClient === 'function' ? window.supabase.createClient(window.UR_CONFIG.SUPABASE_URL, window.UR_CONFIG.SUPABASE_ANON_KEY) : null);
+    if (!client) return;
+
+    try {
+      await loadShopCategories();
+
+      const { data: products, error } = await client
+        .from('products')
+        .select('id, name, price, mrp, main_image, is_new_arrival, category_id, categories(id, slug, name)')
+        .eq('status', 'published')
+        .order('created_at', { ascending: false });
+
+      if (error || !products) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">No products available.</p>';
+        return;
+      }
+
+      rawProducts = products;
+      filterProducts();
+    } catch(e) {
+      console.error('loadShopData error:', e);
+    }
+  }
+
+  function selectCategory(slug, el) {
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    if (el) el.classList.add('active');
+    activeCategorySlug = slug;
+
+    const bannerBox = document.getElementById('shopCatBanner');
+    const bannerTitle = document.getElementById('shopCatBannerTitle');
+    const bannerDesc = document.getElementById('shopCatBannerDesc');
+
+    if (slug === 'all') {
+      document.getElementById('activeCategoryTitle').textContent = 'ALL STREETWEAR COLLECTION';
+      if (bannerBox) bannerBox.style.display = 'none';
+    } else {
+      const match = activeCategories.find(c => c.slug === slug || c.id === slug);
+      document.getElementById('activeCategoryTitle').textContent = match ? `${match.name.toUpperCase()} COLLECTION` : `${slug.replace(/-/g, ' ').toUpperCase()} COLLECTION`;
+
+      if (match && (match.banner_url || match.image_url) && bannerBox) {
+        bannerBox.style.backgroundImage = `url('${match.banner_url || match.image_url}')`;
+        if (bannerTitle) bannerTitle.textContent = match.name;
+        if (bannerDesc) bannerDesc.textContent = match.description || 'Explore the complete curated streetwear drop.';
+        bannerBox.style.display = 'block';
+      } else if (bannerBox) {
+        bannerBox.style.display = 'none';
+      }
+    }
+
+    filterProducts();
+  }
+
+  function filterProducts() {
+    const grid = document.getElementById('shopGrid');
+    const searchVal = (document.getElementById('shopSearch').value || '').toLowerCase().trim();
+
+    let filtered = rawProducts.filter(p => {
+      const catSlug = p.categories ? p.categories.slug : '';
+      const catId = p.category_id || (p.categories ? p.categories.id : '');
+      const matchesCategory = activeCategorySlug === 'all' || 
+                              catSlug === activeCategorySlug || 
+                              catId === activeCategorySlug;
+      const matchesSearch = !searchVal || p.name.toLowerCase().includes(searchVal) || (p.description || '').toLowerCase().includes(searchVal);
+      return matchesCategory && matchesSearch;
+    });
+
+    document.getElementById('productCountBadge').textContent = `${filtered.length} Products Found`;
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">No matching products found.</p>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map(p => `
+      <div class="product-card">
+        <div class="prod-image-wrap">
+          ${p.is_new_arrival ? '<span class="prod-tag">NEW</span>' : ''}
+          <a href="product.html?id=${p.id}">
+            <img src="${p.main_image || 'images/logo.jpg'}" alt="${p.name}" loading="lazy" decoding="async">
+          </a>
+        </div>
+        <div class="prod-info">
+          <div class="product-category" style="font-size:11px;color:var(--text-muted);font-weight:700;">${p.categories ? p.categories.name : 'CLASSIC COLLECTION SOLAPUR'}</div>
+          <a href="product.html?id=${p.id}" class="prod-name" style="font-weight:700;font-size:14px;margin:4px 0;">${p.name}</a>
+          <div class="prod-price-row">
+            <span class="prod-price">₹${p.price}</span>
+            ${p.mrp ? `<span class="prod-mrp">₹${p.mrp}</span>` : ''}
+            ${p.mrp ? `<span class="prod-off">${Math.round(((p.mrp - p.price)/p.mrp)*100)}% OFF</span>` : ''}
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+    const catQuery = urlParams.get('category');
+    if (searchQuery) {
+      const searchInput = document.getElementById('shopSearch');
+      if (searchInput) searchInput.value = searchQuery;
+    }
+    if (catQuery) {
+      activeCategorySlug = catQuery;
+    }
+    loadShopData();
+    document.addEventListener('urSupabaseReady', loadShopData);
+  });
+</script>
+</body>
+</html>
