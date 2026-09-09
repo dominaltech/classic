@@ -1,4 +1,4 @@
-﻿-- ==============================================================================
+-- ==============================================================================
 -- IMMEDIATE PERMISSIONS & RLS FIX FOR SUPABASE
 -- Run this in Supabase SQL Editor: Dashboard -> SQL Editor -> New query -> Paste & Run
 -- Completely resolves: permission denied for table ... error (Postgres 42501)
@@ -15,7 +15,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO postgres, an
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON ROUTINES TO postgres, anon, authenticated, service_role;
 
 -- 2. Drop all old/restrictive policies across all public tables
-DO  
+DO $$ 
 DECLARE
   pol RECORD;
 BEGIN
@@ -26,10 +26,10 @@ BEGIN
   LOOP
     EXECUTE format('DROP POLICY IF EXISTS %I ON public.%I', pol.policyname, pol.tablename);
   END LOOP;
-END ;
+END $$;
 
 -- 3. Enable RLS and create 100% permissive CRUD policies on ALL public tables
-DO 
+DO $$
 DECLARE
   tbl RECORD;
 BEGIN
@@ -41,7 +41,7 @@ BEGIN
     EXECUTE format('ALTER TABLE public.%I ENABLE ROW LEVEL SECURITY', tbl.tablename);
     EXECUTE format('CREATE POLICY %I ON public.%I FOR ALL TO public USING (true) WITH CHECK (true)', 'Public Full ' || tbl.tablename, tbl.tablename);
   END LOOP;
-END ;
+END $$;
 
 -- 4. Storage buckets & storage.objects access
 INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
@@ -53,9 +53,12 @@ ON CONFLICT (id) DO UPDATE SET
   file_size_limit = 10485760,
   allowed_mime_types = ARRAY['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml'];
 
-DROP POLICY IF EXISTS Public Full Storage Access ON storage.objects;
-CREATE POLICY Public Full Storage Access
+DROP POLICY IF EXISTS "Public Full Storage Access" ON storage.objects;
+CREATE POLICY "Public Full Storage Access"
 ON storage.objects FOR ALL
 TO public
 USING (bucket_id IN ('product-images', 'banner-images'))
 WITH CHECK (bucket_id IN ('product-images', 'banner-images'));
+
+GRANT ALL ON ALL TABLES IN SCHEMA storage TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA storage TO postgres, anon, authenticated, service_role;

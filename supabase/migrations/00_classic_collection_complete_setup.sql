@@ -259,6 +259,9 @@ TO public
 USING (bucket_id IN ('product-images', 'banner-images'))
 WITH CHECK (bucket_id IN ('product-images', 'banner-images'));
 
+GRANT ALL ON ALL TABLES IN SCHEMA storage TO postgres, anon, authenticated, service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA storage TO postgres, anon, authenticated, service_role;
+
 -- ==============================================================================
 -- 6. SEED DATA: CLOTH MATERIAL CATEGORIES
 -- ==============================================================================

@@ -1710,7 +1710,103 @@ svg { display: block; }
   }
 }
 
-
-
-
-
+/* ============================================
+   CLASSIC VIDEO SHOWCASE SECTION (classic.mp4)
+   ============================================ */
+.classic-video-section {
+  padding: 40px 0;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+}
+.classic-video-container {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+.classic-video-header {
+  margin-bottom: 24px;
+}
+.classic-video-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #111;
+  background: linear-gradient(90deg, #FFE279 0%, #E6AF34 50%, #C98A19 100%);
+  padding: 5px 16px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(230, 175, 52, 0.35);
+}
+.classic-video-title {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 3.5vw, 32px);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.classic-video-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+}
+.classic-video-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+  background: #000;
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .classic-video-section {
+    padding: 24px 0;
+  }
+  .classic-video-wrapper {
+    aspect-ratio: 9 / 16;
+    max-height: 75vh;
+    border-radius: 10px;
+  }
+}
+.classic-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  background: #000;
+}
+.video-sound-pill {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  background: rgba(17, 17, 17, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #ffffff;
+  border: 1.5px solid rgba(230, 175, 52, 0.8);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.video-sound-pill:hover, .video-sound-pill:active {
+  background: #E6AF34;
+  color: #111;
+  transform: scale(1.05);
+}

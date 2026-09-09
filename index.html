@@ -6,9 +6,9 @@
   <title>Classic Collection Solapur — Excellence in Fine Fabric & Cloth Materials</title>
   <meta name="description" content="Classic Collection Solapur — Premium cloth materials, suiting, shirting, pure cotton, linen, khadi, and royal silk fabrics.">
   <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="urbanlogo.jpeg" type="image/jpeg">
-  <link rel="apple-touch-icon" href="urbanlogo.jpeg">
-  <meta property="og:image" content="urbanlogo.jpeg">
+  <link rel="icon" href="images/logo.png" type="image/jpeg">
+  <link rel="apple-touch-icon" href="images/logo.png">
+  <meta property="og:image" content="images/logo.png">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -49,7 +49,7 @@
     </button>
     <!-- Logo -->
     <a href="index.html" class="logo">
-      <img src="images/logo.jpg" alt="Classic Collection Solapur Logo" class="logo-img" style="height:38px;width:auto;object-fit:contain;" />
+      <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:42px;width:auto;object-fit:contain;" />
       <span class="logo-wordmark">Classic Collection Solapur</span>
     </a>
 
@@ -206,6 +206,34 @@
     </div>
   </section>
 
+  <!-- FEATURED BRAND VIDEO SHOWCASE (classic.mp4) -->
+  <section class="classic-video-section" id="classicVideoSection" aria-label="Brand Video Showcase">
+    <div class="container">
+      <div class="classic-video-container">
+        <div class="classic-video-header">
+          <span class="classic-video-badge">EXCLUSIVE SHOWCASE</span>
+          <h2 class="classic-video-title">CLASSIC COLLECTION SOLAPUR</h2>
+          <p class="classic-video-subtitle">Watch our premium craftsmanship, suiting &amp; shirting heritage in action</p>
+        </div>
+        <div class="classic-video-wrapper">
+          <video id="classicMainVideo"
+                 class="classic-video-player"
+                 src="classic.mp4"
+                 playsinline
+                 webkit-playsinline
+                 loop
+                 preload="auto"
+                 controls>
+            Your browser does not support HTML5 video.
+          </video>
+          <button class="video-sound-pill" id="videoSoundBtn" onclick="toggleMainVideoSound()" aria-label="Toggle Sound">
+            <span id="videoSoundIcon">🔊 Tap for Sound</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- DYNAMIC EVENT & PROMOTION BANNER STRIP (MANAGED VIA ADMIN PANEL) -->
   <section class="rakhi-home-strip" id="homeEventStrip" style="display: none;">
     <!-- Injected dynamically via loadHomeEventBanner() -->
@@ -311,7 +339,7 @@
     <div class="footer-grid">
       <div>
         <a href="index.html" class="footer-logo-row logo">
-          <img src="images/logo.jpg" alt="Classic Collection Solapur" class="logo-img" style="height:38px;width:auto;object-fit:contain;" />
+          <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:42px;width:auto;object-fit:contain;" />
           <span class="logo-wordmark">Classic Collection Solapur</span>
         </a>
         <p class="footer-desc">Excellence in Fine Fabric & Cloth Materials Premium streetwear crafted for the bold generation. Quality you can feel, style you can own.</p>
@@ -586,10 +614,58 @@
     loadHomeEventBanner();
   }
 
+  // FEATURED VIDEO AUTOPLAY WITH AUDIO HANDLING
+  function initClassicVideo() {
+    const video = document.getElementById('classicMainVideo');
+    const soundIcon = document.getElementById('videoSoundIcon');
+    if (!video) return;
+
+    // Mobile autoplay: Attempt unmuted playback first, fallback to muted + 1-tap unmute
+    video.muted = false;
+    video.volume = 1.0;
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        if (soundIcon) soundIcon.textContent = '🔊 Sound On';
+      }).catch(() => {
+        video.muted = true;
+        video.play().catch(() => {});
+        if (soundIcon) soundIcon.textContent = '🔇 Tap for Sound';
+      });
+    }
+
+    const enableAudio = () => {
+      if (video.muted) {
+        video.muted = false;
+        video.volume = 1.0;
+        if (soundIcon) soundIcon.textContent = '🔊 Sound On';
+      }
+      ['touchstart', 'click'].forEach(evt => document.removeEventListener(evt, enableAudio));
+    };
+    ['touchstart', 'click'].forEach(evt => document.addEventListener(evt, enableAudio, { once: true }));
+  }
+
+  window.toggleMainVideoSound = function() {
+    const video = document.getElementById('classicMainVideo');
+    const soundIcon = document.getElementById('videoSoundIcon');
+    if (!video) return;
+    if (video.muted) {
+      video.muted = false;
+      video.volume = 1.0;
+      if (video.paused) video.play();
+      if (soundIcon) soundIcon.textContent = '🔊 Sound On';
+    } else {
+      video.muted = true;
+      if (soundIcon) soundIcon.textContent = '🔇 Tap for Sound';
+    }
+  };
+
   document.addEventListener('DOMContentLoaded', function() {
     startHeroSlider();
     loadHomePageData();
     loadHomeEventBanner();
+    initClassicVideo();
     document.addEventListener('urSupabaseReady', function() {
       loadHomePageData();
       loadHomeEventBanner();
