@@ -158,42 +158,78 @@
 <!-- MAIN CONTENT -->
 <main id="MainContent">
 
-  <!-- HERO SLIDER BANNER -->
-  <section class="hero-slider" id="heroSlider" aria-label="Featured collections">
-    <div class="hero-slide active">
-      <img src="images/banner1.jpg" alt="Classic Collection Solapur Streetwear Collection" class="hero-img">
-      <div class="hero-shade"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">CLASSIC COLLECTION SOLAPUR STREETWEAR</h1>
-        <p class="hero-subtitle">240 GSM COMBED COTTON · LUXURY OVERSIZED FIT</p>
-        <a href="shop.html" class="hero-btn">SHOP COLLECTION →</a>
-      </div>
-    </div>
+  <!-- HERO SPLIT SECTION (PC: LEFT BRAND TEXT & BUTTON / RIGHT SLIDER) -->
+  <section class="hero-split-section" id="heroSection" aria-label="Featured showcase">
+    <div class="container hero-split-container">
+      <div class="hero-split-grid">
+        
+        <!-- LEFT SIDE: BRAND NAME, SIMPLE TEXT, SHOP NOW BUTTON -->
+        <div class="hero-left-brand-col">
+          <div class="hero-brand-inner">
+            <span class="hero-brand-badge">ROYAL HERITAGE BESPOKE</span>
+            <h1 class="hero-brand-heading">CLASSIC</h1>
+            <p class="hero-brand-text">
+              Fine Suiting, Shirting &amp; Cloth Materials Crafted for Elegance.
+            </p>
+            <div class="hero-btn-group">
+              <a href="shop.html" class="hero-shop-now-btn" id="heroShopNowBtn">
+                <span>SHOP NOW</span>
+                <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+            <div class="hero-trust-badges">
+              <div class="hero-trust-item">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>100% Genuine Fabrics</span>
+              </div>
+              <div class="hero-trust-item">
+                <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                <span>All India Express Delivery</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <div class="hero-slide">
-      <img src="images/banner2.jpg" alt="Everyday Luxury Co-ords" class="hero-img">
-      <div class="hero-shade"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">EVERYDAY LUXURY CO-ORDS</h1>
-        <p class="hero-subtitle">PREMIUM DROP SHOULDER · EARTH TONE ESSENTIALS</p>
-        <a href="shop.html" class="hero-btn">EXPLORE ESSENTIALS →</a>
-      </div>
-    </div>
+        <!-- RIGHT SIDE: HERO BANNER IMAGE SLIDER -->
+        <div class="hero-right-slider-col">
+          <div class="hero-slider" id="heroSlider" aria-label="Featured collections">
+            <div class="hero-slide active">
+              <img src="images/banner1.jpg" alt="Classic Suiting &amp; Shirting" class="hero-img">
+              <div class="hero-slide-overlay">
+                <span class="hero-slide-tag">EXCLUSIVE SHOWCASE</span>
+                <span class="hero-slide-caption">Fine Luxury Suiting</span>
+              </div>
+            </div>
+            <div class="hero-slide">
+              <img src="images/banner2.jpg" alt="Premium Cottons &amp; Linens" class="hero-img">
+              <div class="hero-slide-overlay">
+                <span class="hero-slide-tag">NEW ARRIVAL</span>
+                <span class="hero-slide-caption">Pure Breathable Cottons</span>
+              </div>
+            </div>
+            <div class="hero-slide">
+              <img src="images/banner3.jpg" alt="Bespoke Handloom Fabrics" class="hero-img">
+              <div class="hero-slide-overlay">
+                <span class="hero-slide-tag">LIMITED EDITION</span>
+                <span class="hero-slide-caption">Handloom &amp; Silk Blends</span>
+              </div>
+            </div>
 
-    <div class="hero-slide">
-      <img src="images/banner3.jpg" alt="Minimalist Street Culture" class="hero-img">
-      <div class="hero-shade"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">MINIMALIST STREET CULTURE</h1>
-        <p class="hero-subtitle">HEAVYWEIGHT WASHED DENIM &amp; CARGOS</p>
-        <a href="shop.html" class="hero-btn">SHOP LIMITED EDITIONS →</a>
-      </div>
-    </div>
+            <div class="slider-dots" id="heroSliderDots">
+              <button class="slider-dot active" onclick="setHeroSlide(0)" aria-label="Slide 1"></button>
+              <button class="slider-dot" onclick="setHeroSlide(1)" aria-label="Slide 2"></button>
+              <button class="slider-dot" onclick="setHeroSlide(2)" aria-label="Slide 3"></button>
+            </div>
+            <button class="slider-nav-btn prev" onclick="prevHeroSlide()" aria-label="Previous slide">
+              <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="slider-nav-btn next" onclick="nextHeroSlide()" aria-label="Next slide">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
 
-    <div class="slider-dots" id="heroSliderDots">
-      <button class="slider-dot active" onclick="setHeroSlide(0)" aria-label="Slide 1"></button>
-      <button class="slider-dot" onclick="setHeroSlide(1)" aria-label="Slide 2"></button>
-      <button class="slider-dot" onclick="setHeroSlide(2)" aria-label="Slide 3"></button>
+      </div>
     </div>
   </section>
 
@@ -413,6 +449,18 @@
     });
   }
 
+  function prevHeroSlide() {
+    const slides = document.querySelectorAll('#heroSlider .hero-slide');
+    if (slides.length <= 1) return;
+    setHeroSlide(heroSlideIndex - 1);
+  }
+
+  function nextHeroSlide() {
+    const slides = document.querySelectorAll('#heroSlider .hero-slide');
+    if (slides.length <= 1) return;
+    setHeroSlide(heroSlideIndex + 1);
+  }
+
   function startHeroSlider() {
     if (heroInterval) clearInterval(heroInterval);
     heroInterval = setInterval(() => {
@@ -430,51 +478,47 @@
     if (!client) return;
 
     try {
-      // 1. Load Hero Banners (with session caching)
-      const bannerCacheKey = 'classic_cached_banners';
-      const bannerTimeKey = 'classic_cached_banners_time';
-      let banners = null;
-      const now = Date.now();
-      const cachedBanners = sessionStorage.getItem(bannerCacheKey);
-      const cachedBannersTime = sessionStorage.getItem(bannerTimeKey);
-
-      if (cachedBanners && cachedBannersTime && (now - parseInt(cachedBannersTime, 10)) < 15000) {
-        try { banners = JSON.parse(cachedBanners); } catch(e) {}
-      }
-
-      if (!banners) {
-        const { data: fetchedBanners } = await client
+      // 1. Load Hero Banners (FRESH FETCH DIRECTLY FROM SUPABASE - NO STALE CACHING)
+      let banners = [];
+      try {
+        const { data: fetchedBanners, error: banErr } = await client
           .from('banners')
-          .select('id, title, subtitle, image_url, link_url, display_order, is_active')
+          .select('id, title, subtitle, image_url, link_url, badge_text, display_order, is_active')
           .eq('is_active', true)
           .order('display_order', { ascending: true });
-        banners = fetchedBanners || [];
-        if (banners.length > 0) {
-          try {
-            sessionStorage.setItem(bannerCacheKey, JSON.stringify(banners));
-            sessionStorage.setItem(bannerTimeKey, now.toString());
-          } catch(e) {}
+        
+        if (!banErr && fetchedBanners && fetchedBanners.length > 0) {
+          banners = fetchedBanners;
         }
+      } catch(e) {
+        console.warn('Live banners fetch fallback:', e);
       }
 
       if (banners && banners.length > 0) {
         const slider = document.getElementById('heroSlider');
-        slider.innerHTML = banners.map((b, idx) => `
-          <div class="hero-slide ${idx === 0 ? 'active' : ''}">
-            <img src="${b.image_url || 'images/banner1.jpg'}" alt="${b.title}" class="hero-img" ${idx > 0 ? 'loading="lazy" decoding="async"' : 'fetchpriority="high"'}>
-            <div class="hero-shade"></div>
-            <div class="hero-content">
-              <h1 class="hero-title">${b.title}</h1>
-              <p class="hero-subtitle">${b.subtitle || ''}</p>
-              <a href="${b.link_url || 'shop.html'}" class="hero-btn">SHOP COLLECTION →</a>
+        if (slider) {
+          slider.innerHTML = banners.map((b, idx) => `
+            <div class="hero-slide ${idx === 0 ? 'active' : ''}">
+              <img src="${b.image_url || 'images/banner1.jpg'}" alt="${b.title || 'Classic Collection'}" class="hero-img" ${idx > 0 ? 'loading="lazy" decoding="async"' : 'fetchpriority="high"'}>
+              <div class="hero-slide-overlay">
+                ${b.badge_text ? `<span class="hero-slide-tag">${b.badge_text}</span>` : ''}
+                ${b.title ? `<span class="hero-slide-caption">${b.title}</span>` : ''}
+              </div>
+              ${b.link_url && b.link_url !== '#' ? `<a href="${b.link_url}" class="hero-slide-clickable" aria-label="${b.title || 'View collection'}"></a>` : ''}
             </div>
-          </div>
-        `).join('') + `
-          <div class="slider-dots" id="heroSliderDots">
-            ${banners.map((_, idx) => `<button class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="setHeroSlide(${idx})" aria-label="Slide ${idx+1}"></button>`).join('')}
-          </div>
-        `;
-        startHeroSlider();
+          `).join('') + `
+            <div class="slider-dots" id="heroSliderDots">
+              ${banners.map((_, idx) => `<button class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="setHeroSlide(${idx})" aria-label="Slide ${idx+1}"></button>`).join('')}
+            </div>
+            <button class="slider-nav-btn prev" onclick="prevHeroSlide()" aria-label="Previous slide">
+              <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="slider-nav-btn next" onclick="nextHeroSlide()" aria-label="Next slide">
+              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          `;
+          startHeroSlider();
+        }
       }
 
       // 2. Load Dynamic Categories & Uploaded Category Banners from Supabase

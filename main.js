@@ -530,7 +530,7 @@
       if (!forceRefresh) {
         const cached = sessionStorage.getItem(cacheKey);
         const cachedTime = sessionStorage.getItem(cacheTimeKey);
-        if (cached && cachedTime && (now - parseInt(cachedTime, 10)) < 300000) {
+        if (cached && cachedTime && (now - parseInt(cachedTime, 10)) < 5000) {
           try {
             return JSON.parse(cached);
           } catch(e) {}
