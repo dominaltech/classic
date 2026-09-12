@@ -1,6 +1,6 @@
-// CLASSIC STOREFRONT SERVICE WORKER (V6 - REALTIME CACHE-BUSTING)
-const STATIC_CACHE_NAME = 'classic-storefront-v6';
-const MEDIA_CACHE_NAME = 'classic-media-v2';
+// CLASSIC STOREFRONT SERVICE WORKER (V7 - LIGHT CREAM & 30% DARK BROWN THEME)
+const STATIC_CACHE_NAME = 'classic-storefront-v7';
+const MEDIA_CACHE_NAME = 'classic-media-v3';
 
 const STATIC_ASSETS = [
   '/',
