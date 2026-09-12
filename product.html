@@ -394,10 +394,10 @@
               
               ${galleryImages.length > 1 ? `
                 <button class="gallery-nav-arrow gallery-nav-prev" onclick="prevPdpImage(event)">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#111" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
                 </button>
                 <button class="gallery-nav-arrow gallery-nav-next" onclick="nextPdpImage(event)">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#111" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
                 </button>
                 <div class="gallery-counter-badge" id="galleryCounter">1 / ${galleryImages.length}</div>
               ` : ''}
@@ -644,7 +644,7 @@
             <div class="rakhi-sub">Use coupon code <span class="rakhi-code">${coupon.code}</span></div>
           </div>
           <button type="button" class="rakhi-apply-btn" id="pdpCouponApplyBtn" onclick="event.stopPropagation(); toggleProductCoupon();">
-            ${isApplied ? `✓ ${discountStr} APPLIED` : 'APPLY CODE'}
+            ${isApplied ? `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="vertical-align:middle;margin-right:4px;"><polyline points="20 6 9 17 4 12"/></svg>${discountStr} APPLIED` : 'APPLY CODE'}
           </button>
         </div>
       `;
