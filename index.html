@@ -18,7 +18,7 @@
     "logo": "https://classicsolapur.com/urbanlogo.jpeg"
   }
   </script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=8">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script src="main.js"></script>
@@ -442,6 +442,24 @@
         setHeroSlide(heroSlideIndex + 1);
       }
     }, 5000);
+
+    const sliderEl = document.getElementById('heroSlider');
+    if (sliderEl && !sliderEl._swipeAttached) {
+      sliderEl._swipeAttached = true;
+      let startX = 0;
+      sliderEl.addEventListener('touchstart', (e) => {
+        if (e.changedTouches && e.changedTouches.length) {
+          startX = e.changedTouches[0].screenX;
+        }
+      }, { passive: true });
+      sliderEl.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches.length) {
+          const diff = startX - e.changedTouches[0].screenX;
+          if (diff > 40) nextHeroSlide();
+          else if (diff < -40) prevHeroSlide();
+        }
+      }, { passive: true });
+    }
   }
 
   async function loadHomePageData() {

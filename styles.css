@@ -462,7 +462,7 @@ svg { display: block; }
 
 .hero-split-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1.1fr 1fr;
   gap: 48px;
   align-items: center;
   min-height: 480px;
@@ -594,19 +594,21 @@ svg { display: block; }
 .hero-right-slider-col {
   position: relative;
   width: 100%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .hero-slider {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
-  min-height: 400px;
-  max-height: 520px;
-  border-radius: 10px;
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 12px 36px rgba(34, 19, 12, 0.12);
+  box-shadow: 0 16px 40px rgba(34, 19, 12, 0.14);
   border: 1.5px solid var(--border-dark);
   background: var(--bg-secondary);
+  margin-left: auto;
 }
 
 /* Hero Slider Skeleton Loader (Zero Hardcoded Image Glimpse) */
@@ -1537,67 +1539,76 @@ svg { display: block; }
   .nav-icon-btn { width: 36px; height: 36px; }
   .announcement-bar { padding: 0 14px; }
 
-  /* Hero Split Section Mobile Responsive */
-  .hero-split-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    min-height: auto;
+  /* Hero Split Section Mobile Responsive - User Voice Order: Square Slider -> Shop Now Button -> Video */
+  .hero-split-section {
+    padding: 0;
+    border-bottom: 1.5px solid var(--border);
   }
   .hero-split-container {
-    padding: 24px 14px 28px;
+    padding: 14px 14px 18px;
   }
+  .hero-split-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: auto;
+  }
+  /* 1. Slider column comes FIRST on mobile */
+  .hero-right-slider-col {
+    order: 1;
+    width: 100%;
+    display: block;
+  }
+  .hero-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    aspect-ratio: 1 / 1 !important;
+    min-height: unset !important;
+    max-height: unset !important;
+    border-radius: 10px;
+    margin: 0 auto;
+    box-shadow: 0 8px 24px rgba(34, 19, 12, 0.12);
+  }
+  /* 2. Left brand column comes SECOND on mobile (holding Shop Now button) */
   .hero-left-brand-col {
+    order: 2;
+    width: 100%;
     text-align: center;
     align-items: center;
     padding: 0;
   }
   .hero-brand-inner {
     max-width: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
-  .hero-brand-badge {
-    font-size: 10px;
-    letter-spacing: 2px;
-    padding: 5px 12px;
-    margin-bottom: 12px;
+  /* Completely hide brand texts, badge, and trust badges on mobile per user voice instruction */
+  .hero-brand-badge,
+  .hero-brand-heading,
+  .hero-brand-text,
+  .hero-trust-badges {
+    display: none !important;
   }
-  .hero-brand-heading {
-    font-family: var(--font-heading);
-    font-size: clamp(34px, 8vw, 46px);
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  .hero-brand-text {
-    font-size: 13.5px;
-    margin-bottom: 20px;
-    text-align: center;
-    max-width: 92%;
-  }
+  /* 3. Shop Now button placed directly below square slider */
   .hero-btn-group {
+    display: flex;
     justify-content: center;
-    margin-bottom: 18px;
+    margin: 2px 0 0 0;
     width: 100%;
   }
   .hero-shop-now-btn {
-    padding: 12px 28px;
-    font-size: 11.5px;
-    margin: 0 auto;
-  }
-  .hero-trust-badges {
+    width: 100%;
+    max-width: 320px;
+    padding: 13px 28px;
+    font-size: 12px;
+    letter-spacing: 2px;
     justify-content: center;
-    gap: 16px;
-    padding-top: 14px;
-  }
-  .hero-trust-item {
-    font-size: 11px;
-  }
-  .hero-slider {
-    aspect-ratio: 16 / 10;
-    min-height: 230px;
-    max-height: 360px;
-    border-radius: 8px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 16px rgba(34, 19, 12, 0.18);
   }
   .slider-nav-btn {
     opacity: 0.85;
@@ -2160,7 +2171,26 @@ svg { display: block; }
 }
 @media (max-width: 768px) {
   .classic-video-section {
-    padding: 32px 0;
+    padding: 22px 0 30px;
+  }
+  .classic-video-header {
+    margin-bottom: 14px;
+  }
+  .classic-video-badge {
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 4px 14px;
+    margin-bottom: 6px;
+  }
+  .classic-video-title {
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+  }
+  .classic-video-subtitle {
+    font-size: 12px;
+    padding: 0 12px;
+    margin-bottom: 4px;
   }
   .classic-video-wrapper {
     aspect-ratio: 9 / 16;
