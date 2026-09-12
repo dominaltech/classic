@@ -191,41 +191,14 @@
         </div>
 
         <!-- RIGHT SIDE: HERO BANNER IMAGE SLIDER -->
+        <!-- RIGHT SIDE: HERO BANNER IMAGE SLIDER (DYNAMICALLY POPULATED FROM ADMIN / SUPABASE) -->
         <div class="hero-right-slider-col">
           <div class="hero-slider" id="heroSlider" aria-label="Featured collections">
-            <div class="hero-slide active">
-              <img src="images/banner1.jpg" alt="Classic Suiting &amp; Shirting" class="hero-img">
-              <div class="hero-slide-overlay">
-                <span class="hero-slide-tag">EXCLUSIVE SHOWCASE</span>
-                <span class="hero-slide-caption">Fine Luxury Suiting</span>
-              </div>
+            <!-- Dynamic Hero Banner Slider Loader (Zero Hardcoded Images) -->
+            <div class="hero-slider-loader" id="heroSliderLoader">
+              <div class="hero-loader-shimmer"></div>
+              <div class="hero-loader-badge">CLASSIC BESPOKE</div>
             </div>
-            <div class="hero-slide">
-              <img src="images/banner2.jpg" alt="Premium Cottons &amp; Linens" class="hero-img">
-              <div class="hero-slide-overlay">
-                <span class="hero-slide-tag">NEW ARRIVAL</span>
-                <span class="hero-slide-caption">Pure Breathable Cottons</span>
-              </div>
-            </div>
-            <div class="hero-slide">
-              <img src="images/banner3.jpg" alt="Bespoke Handloom Fabrics" class="hero-img">
-              <div class="hero-slide-overlay">
-                <span class="hero-slide-tag">LIMITED EDITION</span>
-                <span class="hero-slide-caption">Handloom &amp; Silk Blends</span>
-              </div>
-            </div>
-
-            <div class="slider-dots" id="heroSliderDots">
-              <button class="slider-dot active" onclick="setHeroSlide(0)" aria-label="Slide 1"></button>
-              <button class="slider-dot" onclick="setHeroSlide(1)" aria-label="Slide 2"></button>
-              <button class="slider-dot" onclick="setHeroSlide(2)" aria-label="Slide 3"></button>
-            </div>
-            <button class="slider-nav-btn prev" onclick="prevHeroSlide()" aria-label="Previous slide">
-              <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <button class="slider-nav-btn next" onclick="nextHeroSlide()" aria-label="Next slide">
-              <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
           </div>
         </div>
 
@@ -495,11 +468,13 @@
       }
 
       if (banners && banners.length > 0) {
+        // Render strictly from admin-uploaded Supabase banners (zero hardcoded images)
+        const validBanners = banners.filter(b => b.image_url && b.image_url.trim().length > 0);
         const slider = document.getElementById('heroSlider');
-        if (slider) {
-          slider.innerHTML = banners.map((b, idx) => `
+        if (slider && validBanners.length > 0) {
+          slider.innerHTML = validBanners.map((b, idx) => `
             <div class="hero-slide ${idx === 0 ? 'active' : ''}">
-              <img src="${b.image_url || 'images/banner1.jpg'}" alt="${b.title || 'Classic Collection'}" class="hero-img" ${idx > 0 ? 'loading="lazy" decoding="async"' : 'fetchpriority="high"'}>
+              <img src="${b.image_url}" alt="${b.title || 'Classic Collection'}" class="hero-img" ${idx > 0 ? 'loading="lazy" decoding="async"' : 'fetchpriority="high"'}>
               <div class="hero-slide-overlay">
                 ${b.badge_text ? `<span class="hero-slide-tag">${b.badge_text}</span>` : ''}
                 ${b.title ? `<span class="hero-slide-caption">${b.title}</span>` : ''}
@@ -508,7 +483,7 @@
             </div>
           `).join('') + `
             <div class="slider-dots" id="heroSliderDots">
-              ${banners.map((_, idx) => `<button class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="setHeroSlide(${idx})" aria-label="Slide ${idx+1}"></button>`).join('')}
+              ${validBanners.map((_, idx) => `<button class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="setHeroSlide(${idx})" aria-label="Slide ${idx+1}"></button>`).join('')}
             </div>
             <button class="slider-nav-btn prev" onclick="prevHeroSlide()" aria-label="Previous slide">
               <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -521,21 +496,12 @@
         }
       }
 
-      // 2. Load Dynamic Categories & Uploaded Category Banners from Supabase
+      // 2. Load Dynamic Categories & Uploaded Category Banners from Supabase (ZERO HARDCODED IMAGES)
       const categories = await window.fetchStoreCategories();
 
       if (categories && categories.length > 0 && catGrid) {
         const validCats = categories.filter(c => c.slug !== 'women' && c.slug !== 'test-items' && !(c.name || '').toLowerCase().includes('women') && !(c.name || '').toLowerCase().includes('test'));
         if (validCats.length > 0) {
-          const defaultBanners = {
-            'suiting': 'images/hero1.jpg',
-            'shirting': 'images/hero2.jpg',
-            'cotton': 'images/hero3.jpg',
-            'linen': 'images/prod1.jpg',
-            'khadi': 'images/prod2.jpg',
-            'silk': 'images/prod3.jpg'
-          };
-
           catGrid.innerHTML = validCats.map(cat => {
             let targetUrl = `shop.html?category=${encodeURIComponent(cat.slug || cat.id)}`;
             if (cat.slug === 'suiting') targetUrl = 'suiting.html';
@@ -545,11 +511,14 @@
             else if (cat.slug === 'khadi') targetUrl = 'khadi.html';
             else if (cat.slug === 'silk') targetUrl = 'silk.html';
 
-            const bannerImg = cat.banner_url || cat.image_url || defaultBanners[cat.slug] || 'images/banner1.jpg';
+            const bannerImg = cat.banner_url || cat.image_url;
+            const bgStyle = bannerImg 
+              ? `background-image: url('${bannerImg}'); background-size: cover; background-position: center;` 
+              : `background: linear-gradient(135deg, #2D1910 0%, #1A0C06 100%);`;
 
             return `
               <a href="${targetUrl}" class="cat-tile fade-up">
-                <div class="cat-tile-bg" style="background-image: url('${bannerImg}'); background-size: cover; background-position: center;"></div>
+                <div class="cat-tile-bg" style="${bgStyle}"></div>
                 <div class="cat-tile-overlay"></div>
                 <div class="cat-tile-body">
                   <span class="cat-tile-name">${cat.name}</span>

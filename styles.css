@@ -606,6 +606,42 @@ svg { display: block; }
   background: #140905;
 }
 
+/* Hero Slider Skeleton Loader (Zero Hardcoded Image Glimpse) */
+.hero-slider-loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #180C07 0%, #25130B 50%, #150904 100%);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.hero-loader-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: heroShimmer 2.2s infinite linear;
+}
+
+@keyframes heroShimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.hero-loader-badge {
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: rgba(212, 175, 55, 0.5);
+  text-transform: uppercase;
+}
+
 .hero-slide {
   position: absolute;
   inset: 0;
