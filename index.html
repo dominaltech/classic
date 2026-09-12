@@ -438,7 +438,7 @@
       const cachedBanners = sessionStorage.getItem(bannerCacheKey);
       const cachedBannersTime = sessionStorage.getItem(bannerTimeKey);
 
-      if (cachedBanners && cachedBannersTime && (now - parseInt(cachedBannersTime, 10)) < 300000) {
+      if (cachedBanners && cachedBannersTime && (now - parseInt(cachedBannersTime, 10)) < 15000) {
         try { banners = JSON.parse(cachedBanners); } catch(e) {}
       }
 
