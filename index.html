@@ -18,7 +18,7 @@
     "logo": "https://classicsolapur.com/urbanlogo.jpeg"
   }
   </script>
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="styles.css?v=9">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script src="main.js"></script>
@@ -406,7 +406,7 @@
   let heroSlideIndex = 0;
   let heroInterval = null;
 
-  function setHeroSlide(index) {
+  function setHeroSlide(index, restartTimer = false) {
     const slider = document.getElementById('heroSlider');
     if (!slider) return;
     const slides = slider.querySelectorAll('.hero-slide');
@@ -420,18 +420,21 @@
     dots.forEach((d, idx) => {
       d.classList.toggle('active', idx === heroSlideIndex);
     });
+    if (restartTimer) {
+      startHeroSlider();
+    }
   }
 
   function prevHeroSlide() {
     const slides = document.querySelectorAll('#heroSlider .hero-slide');
     if (slides.length <= 1) return;
-    setHeroSlide(heroSlideIndex - 1);
+    setHeroSlide(heroSlideIndex - 1, true);
   }
 
   function nextHeroSlide() {
     const slides = document.querySelectorAll('#heroSlider .hero-slide');
     if (slides.length <= 1) return;
-    setHeroSlide(heroSlideIndex + 1);
+    setHeroSlide(heroSlideIndex + 1, true);
   }
 
   function startHeroSlider() {
@@ -441,7 +444,7 @@
       if (slides.length > 1) {
         setHeroSlide(heroSlideIndex + 1);
       }
-    }, 5000);
+    }, 1500);
 
     const sliderEl = document.getElementById('heroSlider');
     if (sliderEl && !sliderEl._swipeAttached) {
@@ -501,7 +504,7 @@
             </div>
           `).join('') + `
             <div class="slider-dots" id="heroSliderDots">
-              ${validBanners.map((_, idx) => `<button class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="setHeroSlide(${idx})" aria-label="Slide ${idx+1}"></button>`).join('')}
+              ${validBanners.map((_, idx) => `<button class="slider-dot ${idx === 0 ? 'active' : ''}" onclick="setHeroSlide(${idx}, true)" aria-label="Slide ${idx+1}"></button>`).join('')}
             </div>
             <button class="slider-nav-btn prev" onclick="prevHeroSlide()" aria-label="Previous slide">
               <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
