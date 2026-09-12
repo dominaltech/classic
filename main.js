@@ -91,8 +91,7 @@
       overlay.innerHTML = `
         <div class="hamburger-drawer">
           <div class="ham-head">
-            <img src="images/logo.jpg" alt="Classic Collection Solapur" style="height:32px;width:auto;" />
-            <span class="logo-wordmark">Classic Collection Solapur</span>
+            <img src="images/logo.png" alt="Classic Collection" style="height:34px;width:auto;object-fit:contain;" />
             <button class="ham-close" id="hamCloseBtn" onclick="closeCatDrawer()"><svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
           </div>
           <div class="ham-body">
@@ -362,7 +361,7 @@
         this.set(couponObj);
         const desc = couponObj.discount_type === 'PERCENTAGE' ? `${couponObj.discount_value}% OFF` : `₹${couponObj.discount_value} OFF`;
         if (typeof window.UR_TOAST === 'function') {
-          window.UR_TOAST(`🎉 Coupon ${couponObj.code} applied! (${desc})`);
+          window.UR_TOAST(`Coupon ${couponObj.code} applied! (${desc})`);
         }
         return { success: true, coupon: couponObj };
       } else {

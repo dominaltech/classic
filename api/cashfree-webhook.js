@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
             webpush.setVapidDetails(vapidSubject, vapidPublicKey, vapidPrivateKey);
 
             const pushPayload = JSON.stringify({
-              title: '💰 PAYMENT SUCCESSFUL - NEW ORDER!',
+              title: 'PAYMENT SUCCESSFUL - NEW ORDER!',
               body: `Order #${orderId} payment verified for ₹${amount} (Cashfree Paid)`,
               order_id: orderId,
               icon: '/images/logo.jpg'

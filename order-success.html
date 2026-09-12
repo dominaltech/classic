@@ -366,10 +366,10 @@
     <nav class="navbar">
       <a href="index.html" class="logo">
         <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:42px;width:auto;object-fit:contain;" />
-        <span class="logo-wordmark">Classic Collection Solapur</span>
       </a>
-      <div id="headerStatusText" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);">
-        🔒 PAYMENT STATUS
+      <div id="headerStatusText" style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);display:flex;align-items:center;gap:6px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        PAYMENT STATUS
       </div>
     </nav>
   </header>
@@ -608,12 +608,12 @@
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         `;
-        heroTitle.textContent = 'Payment & Order Confirmed! 🎉';
-        heroSubtitle.textContent = 'Thank you for choosing Classic Collection Solapur. Your order has been placed and payment successfully recorded.';
-        headerStatus.textContent = '✓ ORDER CONFIRMED';
+        heroTitle.textContent = 'Payment & Order Confirmed!';
+        heroSubtitle.textContent = 'Thank you for choosing Classic Collection. Your order has been placed and payment successfully recorded.';
+        headerStatus.textContent = 'ORDER CONFIRMED';
         
         paymentBadge.className = 'receipt-tag tag-paid';
-        paymentBadge.textContent = 'PAID ONLINE ✓';
+        paymentBadge.textContent = 'PAID ONLINE';
         totalPaidVal.style.color = '#34d399';
 
         // Clear cart upon confirmed success
@@ -646,12 +646,12 @@
             <line x1="6" y1="6" x2="18" y2="18"></line>
           </svg>
         `;
-        heroTitle.textContent = 'Payment Cancelled / Incomplete ⚠️';
+        heroTitle.textContent = 'Payment Cancelled / Incomplete';
         heroSubtitle.textContent = 'Your payment was not completed or was cancelled. No money was deducted from your account. Your cart items have been saved.';
-        headerStatus.textContent = '✕ PAYMENT CANCELLED';
+        headerStatus.textContent = 'PAYMENT CANCELLED';
 
         paymentBadge.className = 'receipt-tag tag-cancelled';
-        paymentBadge.textContent = 'PAYMENT CANCELLED ✕';
+        paymentBadge.textContent = 'PAYMENT CANCELLED';
         totalPaidVal.style.color = '#f87171';
 
         // Update in Supabase (Uses 'FAILED' & 'CANCELLED' matching DB constraints)

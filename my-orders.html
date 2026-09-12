@@ -103,9 +103,8 @@
     </button>
     <a href="index.html" class="logo">
       <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:42px;width:auto;object-fit:contain;" />
-      <span class="logo-wordmark">Classic Collection Solapur</span>
     </a>
-        <div class="nav-links">
+            <div class="nav-links">
       <div class="nav-item"><a href="shop.html" class="nav-link">All Materials</a></div>
       <div class="nav-item"><a href="suiting.html" class="nav-link">Suiting</a></div>
       <div class="nav-item"><a href="shirting.html" class="nav-link">Shirting</a></div>
@@ -114,13 +113,7 @@
       <div class="nav-item"><a href="khadi.html" class="nav-link">Khadi</a></div>
       <div class="nav-item"><a href="silk.html" class="nav-link">Silk</a></div>
     </div>
-      <div class="nav-item"><a href="plan-tshirt.html" class="nav-link">Plan T-shirt</a></div>
-      <div class="nav-item"><a href="printing-tshirt.html" class="nav-link">Printing T-shirt</a></div>
-      <div class="nav-item"><a href="oversize.html" class="nav-link">Oversize</a></div>
-      <div class="nav-item"><a href="hoodies.html" class="nav-link">Hoodies</a></div>
-      <div class="nav-item"><a href="pants.html" class="nav-link">Pants</a></div>
-      <div class="nav-item"><a href="baggy.html" class="nav-link">Baggy</a></div>
-    </div>
+
     <div class="nav-icons">
       <button class="nav-icon-btn js-search-open" aria-label="Search">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -155,7 +148,6 @@
       <div>
         <a href="index.html" class="footer-logo-row logo">
           <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:42px;width:auto;object-fit:contain;" />
-          <span class="logo-wordmark">Classic Collection Solapur</span>
         </a>
         <p class="footer-desc">Excellence in Fine Fabric & Cloth Materials Premium streetwear crafted for the bold generation. Quality you can feel, style you can own.</p>
       </div>
@@ -261,10 +253,12 @@
         // No orders placed on this device yet
         container.innerHTML = `
           <div style="text-align: center; padding: 60px 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px;">
-            <div style="font-size: 40px; margin-bottom: 12px;">🛍️</div>
+            <div style="margin-bottom: 16px; color: var(--dark-brown);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
             <h2 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; text-transform: uppercase;">NO ORDERS FOUND</h2>
             <p style="color: var(--text-muted); font-size: 14px; margin: 8px 0 20px;">You haven't placed any orders on this device yet.</p>
-            <a href="shop.html" style="display:inline-block;padding:12px 28px;background:var(--black);color:#fff;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;">EXPLORE STREETWEAR</a>
+            <a href="shop.html" style="display:inline-block;padding:12px 28px;background:var(--dark-brown);color:var(--bg);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;">EXPLORE COLLECTION</a>
           </div>
         `;
         return;
@@ -275,10 +269,12 @@
       if (error || !orders || orders.length === 0) {
         container.innerHTML = `
           <div style="text-align: center; padding: 60px 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px;">
-            <div style="font-size: 40px; margin-bottom: 12px;">📦</div>
+            <div style="margin-bottom: 16px; color: var(--dark-brown);">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
             <h2 style="font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; text-transform: uppercase;">NO ORDERS FOUND</h2>
             <p style="color: var(--text-muted); font-size: 14px; margin: 8px 0 20px;">No past orders recorded for your profile.</p>
-            <a href="shop.html" style="display:inline-block;padding:12px 28px;background:var(--black);color:#fff;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;">START SHOPPING</a>
+            <a href="shop.html" style="display:inline-block;padding:12px 28px;background:var(--dark-brown);color:var(--bg);font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:4px;">START SHOPPING</a>
           </div>
         `;
         return;

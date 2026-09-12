@@ -116,7 +116,7 @@ module.exports = async (req, res) => {
       const updatedOrder = await updateOrderInDb('FAILED', 'CANCELLED');
       await notifyAdminOnce(
         'PAYMENT_CANCELLED',
-        '⚠️ PAYMENT CANCELLED / NOT DONE',
+        'PAYMENT CANCELLED / NOT DONE',
         `Order #${order_id} (₹${orderAmount}) attempt by ${customerName} (${customerPhone}) was cancelled / unpaid.`,
         order_id,
         orderAmount
@@ -188,8 +188,8 @@ module.exports = async (req, res) => {
       const updatedOrder = await updateOrderInDb('PAID', 'PLACED');
       await notifyAdminOnce(
         'PAYMENT_SUCCESS',
-        '💰 PAYMENT SUCCESSFUL - NEW ORDER!',
-        `Order #${order_id} for ₹${orderAmount} received from ${customerName} (Online Paid ✓)`,
+        'PAYMENT SUCCESSFUL - NEW ORDER!',
+        `Order #${order_id} for ₹${orderAmount} received from ${customerName} (Online Paid)`,
         order_id,
         orderAmount
       );
@@ -205,7 +205,7 @@ module.exports = async (req, res) => {
       const updatedOrder = await updateOrderInDb('FAILED', 'CANCELLED');
       await notifyAdminOnce(
         'PAYMENT_CANCELLED',
-        '⚠️ PAYMENT CANCELLED / NOT DONE',
+        'PAYMENT CANCELLED / NOT DONE',
         `Order #${order_id} (₹${orderAmount}) attempt by ${customerName} (${customerPhone}) was cancelled / unpaid.`,
         order_id,
         orderAmount

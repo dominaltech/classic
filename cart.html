@@ -37,9 +37,8 @@
     </button>
     <a href="index.html" class="logo">
       <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:42px;width:auto;object-fit:contain;" />
-      <span class="logo-wordmark">Classic Collection Solapur</span>
     </a>
-        <div class="nav-links">
+            <div class="nav-links">
       <div class="nav-item"><a href="shop.html" class="nav-link">All Materials</a></div>
       <div class="nav-item"><a href="suiting.html" class="nav-link">Suiting</a></div>
       <div class="nav-item"><a href="shirting.html" class="nav-link">Shirting</a></div>
@@ -48,14 +47,7 @@
       <div class="nav-item"><a href="khadi.html" class="nav-link">Khadi</a></div>
       <div class="nav-item"><a href="silk.html" class="nav-link">Silk</a></div>
     </div>
-      <div class="nav-item"><a href="plan-tshirt.html" class="nav-link">Plan T-shirt</a></div>
-      <div class="nav-item"><a href="printing-tshirt.html" class="nav-link">Printing T-shirt</a></div>
-      <div class="nav-item"><a href="oversize.html" class="nav-link">Oversize</a></div>
-      <div class="nav-item"><a href="hoodies.html" class="nav-link">Hoodies</a></div>
-      <div class="nav-item"><a href="pants.html" class="nav-link">Pants</a></div>
-      <div class="nav-item"><a href="baggy.html" class="nav-link">Baggy</a></div>
-      <!-- <div class="nav-item"><a href="women.html" class="nav-link">Women</a></div> -->
-    </div>
+
     <div class="nav-icons">
       <button class="nav-icon-btn js-search-open" aria-label="Search">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -73,8 +65,9 @@
 
 <div style="background: var(--bg-secondary); padding: 32px 24px; text-align: center; border-bottom: 1px solid var(--border);">
   <h1 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; text-transform: uppercase;">YOUR SHOPPING BAG</h1>
-  <div id="cartRetryAlert" style="display:none; max-width:600px; margin: 12px auto 0; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 4px; padding: 8px 16px; font-size: 13px; color: #d4af37; font-weight: 600;">
-    💡 <strong>Cart Restored</strong>: Your selected items and sizes are saved. Click <strong>Buy Now</strong> below to complete your checkout!
+  <div id="cartRetryAlert" style="display:none; max-width:600px; margin: 12px auto 0; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 4px; padding: 8px 16px; font-size: 13px; color: var(--gold-accent); font-weight: 600; align-items: center; justify-content: center; gap: 8px;">
+    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" style="display:inline-block;vertical-align:middle;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <strong>Cart Restored</strong>: Your selected items and sizes are saved. Click <strong>Buy Now</strong> below to complete your checkout!
   </div>
 </div>
 
@@ -121,7 +114,6 @@
       <div>
         <a href="index.html" class="footer-logo-row logo">
           <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:42px;width:auto;object-fit:contain;" />
-          <span class="logo-wordmark">Classic Collection Solapur</span>
         </a>
         <p class="footer-desc">Excellence in Fine Fabric & Cloth Materials Premium streetwear crafted for the bold generation. Quality you can feel, style you can own.</p>
       </div>
@@ -214,7 +206,7 @@
           <span style="font-weight:700;min-width:20px;text-align:center;">${item.quantity}</span>
           <button onclick="updateQty('${item.id}', '${item.size}', 1)" style="width:28px;height:28px;border:1px solid var(--border-dark);background:var(--bg);cursor:pointer;font-weight:700;">+</button>
         </div>
-        <button onclick="removeItem('${item.id}', '${item.size}')" style="background:none;border:none;color:var(--sale-red);cursor:pointer;font-size:18px;margin-left:8px;" title="Remove Item">✕</button>
+        <button onclick="removeItem('${item.id}', '${item.size}')" style="background:none;border:none;color:var(--sale-red);cursor:pointer;display:inline-flex;align-items:center;padding:4px;margin-left:8px;" title="Remove Item"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
       </div>
     `).join('');
 
@@ -271,7 +263,7 @@
       container.innerHTML = `
         <div class="rakhi-coupon-banner ${isApplied ? 'applied' : ''}" id="cartCouponBanner" onclick="toggleCartCoupon('${activeObj.code}')">
           <div class="rakhi-banner-left">
-            <span class="rakhi-badge">${activeObj.banner_tag || '✨ SPECIAL EVENT OFFER'}</span>
+            <span class="rakhi-badge"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${(activeObj.banner_tag || 'SPECIAL EVENT OFFER').replace(/[\u2700-\u27bf\U00010000-\U0010ffff]/g, '')}</span>
             <div class="rakhi-title">Get <strong>${discountStr}</strong> on your order!</div>
             <div class="rakhi-sub">Use coupon code <span class="rakhi-code">${activeObj.code}</span></div>
           </div>

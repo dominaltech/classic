@@ -48,21 +48,13 @@
       <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
     <!-- Logo -->
-    <a href="index.html" class="logo">
-      <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:42px;width:auto;object-fit:contain;" />
-      <span class="logo-wordmark">Classic Collection Solapur</span>
+    <a href="index.html" class="logo" aria-label="Classic Collection">
+      <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:44px;width:auto;object-fit:contain;" />
     </a>
 
     <!-- Desktop Nav -->
-        <div class="nav-links">
+    <div class="nav-links">
       <div class="nav-item"><a href="shop.html" class="nav-link">All Materials</a></div>
-      <div class="nav-item"><a href="suiting.html" class="nav-link">Suiting</a></div>
-      <div class="nav-item"><a href="shirting.html" class="nav-link">Shirting</a></div>
-      <div class="nav-item"><a href="cotton.html" class="nav-link">Cotton</a></div>
-      <div class="nav-item"><a href="linen.html" class="nav-link">Linen</a></div>
-      <div class="nav-item"><a href="khadi.html" class="nav-link">Khadi</a></div>
-      <div class="nav-item"><a href="silk.html" class="nav-link">Silk</a></div>
-    </div>
       <div class="nav-item"><a href="suiting.html" class="nav-link">Suiting</a></div>
       <div class="nav-item"><a href="shirting.html" class="nav-link">Shirting</a></div>
       <div class="nav-item"><a href="cotton.html" class="nav-link">Cotton</a></div>
@@ -91,8 +83,7 @@
 <div class="hamburger-overlay" id="hamburgerOverlay">
   <div class="hamburger-drawer">
     <div class="ham-head">
-      <img src="images/logo.jpg" alt="Classic Collection Solapur" style="height:32px;" />
-      <span class="logo-wordmark">Classic Collection Solapur</span>
+      <img src="images/logo.png" alt="Classic Collection" style="height:34px;width:auto;object-fit:contain;" />
       <button class="ham-close" id="hamCloseBtn" onclick="closeCatDrawer()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="ham-body">
@@ -212,7 +203,7 @@
       <div class="classic-video-container">
         <div class="classic-video-header">
           <span class="classic-video-badge">EXCLUSIVE SHOWCASE</span>
-          <h2 class="classic-video-title">CLASSIC COLLECTION SOLAPUR</h2>
+          <h2 class="classic-video-title">CLASSIC COLLECTION</h2>
           <p class="classic-video-subtitle">Watch our premium craftsmanship, suiting &amp; shirting heritage in action</p>
         </div>
         <div class="classic-video-wrapper">
@@ -223,11 +214,13 @@
                  webkit-playsinline
                  loop
                  preload="auto"
+                 muted
                  controls>
             Your browser does not support HTML5 video.
           </video>
-          <button class="video-sound-pill" id="videoSoundBtn" onclick="toggleMainVideoSound()" aria-label="Toggle Sound">
-            <span id="videoSoundIcon">🔊 Tap for Sound</span>
+          <button class="video-sound-pill" id="videoSoundBtn" onclick="toggleMainVideoSound()" aria-label="Unmute Sound">
+            <svg viewBox="0 0 24 24" id="soundIconSvg" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <span id="videoSoundLabel">SOUND OFF</span>
           </button>
         </div>
       </div>
@@ -338,9 +331,8 @@
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a href="index.html" class="footer-logo-row logo">
+        <a href="index.html" class="footer-logo-row logo" aria-label="Classic Collection">
           <img src="images/logo.png" alt="Classic Collection" class="logo-img" style="height:42px;width:auto;object-fit:contain;" />
-          <span class="logo-wordmark">Classic Collection Solapur</span>
         </a>
         <p class="footer-desc">Excellence in Fine Fabric & Cloth Materials Premium streetwear crafted for the bold generation. Quality you can feel, style you can own.</p>
       </div>
@@ -583,7 +575,7 @@
         <div class="container">
           <div class="rakhi-strip-inner">
             <div class="rakhi-strip-left">
-              <div class="rakhi-badge-pill">${coupon.banner_tag || '✨ SPECIAL EVENT OFFER'}</div>
+              <div class="rakhi-badge-pill"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle;margin-right:4px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>${(coupon.banner_tag || 'SPECIAL EVENT OFFER').replace(/[\u2700-\u27bf\U00010000-\U0010ffff]/g, '')}</div>
               <div class="rakhi-strip-text">
                 <span class="rakhi-strip-title">${coupon.banner_message || 'FLAT ' + discountStr + ' ON ALL ORDERS'}</span>
                 <span class="rakhi-strip-sub">Use coupon code <strong class="rakhi-strip-code">${coupon.code}</strong> at checkout</span>
@@ -591,7 +583,7 @@
             </div>
             <div class="rakhi-strip-right">
               <button class="rakhi-strip-btn" onclick="toggleHomeEventCoupon()">
-                <span>${isApplied ? `✓ ${discountStr} APPLIED (${coupon.code})` : `⚡ APPLY ${discountStr}`}</span>
+                <span>${isApplied ? `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align:middle;margin-right:4px;"><polyline points="20 6 9 17 4 12"/></svg>${discountStr} APPLIED (${coupon.code})` : `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" stroke="none" style="vertical-align:middle;margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>APPLY ${discountStr}`}</span>
               </button>
             </div>
           </div>
@@ -614,50 +606,121 @@
     loadHomeEventBanner();
   }
 
-  // FEATURED VIDEO AUTOPLAY WITH AUDIO HANDLING
+  // FEATURED VIDEO: AUTOPLAY ONLY WHEN SCROLLED IN VIEW, PAUSE WHEN OFF-SCREEN, RESTART WHEN RETURNING
+  let isClassicVideoInView = false;
+
+  const SOUND_MUTED_SVG = `<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>`;
+  const SOUND_ON_SVG = `<svg viewBox="0 0 24 24" style="width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path class="svg-wave-pulse" d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>`;
+
+  function updateVideoSoundUI(isMuted) {
+    const soundBtn = document.getElementById('videoSoundBtn');
+    if (!soundBtn) return;
+    if (isMuted) {
+      soundBtn.innerHTML = `${SOUND_MUTED_SVG}<span>SOUND OFF</span>`;
+      soundBtn.setAttribute('aria-label', 'Unmute Sound');
+    } else {
+      soundBtn.innerHTML = `${SOUND_ON_SVG}<span>SOUND ON</span>`;
+      soundBtn.setAttribute('aria-label', 'Mute Sound');
+    }
+  }
+
   function initClassicVideo() {
     const video = document.getElementById('classicMainVideo');
-    const soundIcon = document.getElementById('videoSoundIcon');
     if (!video) return;
 
-    // Mobile autoplay: Attempt unmuted playback first, fallback to muted + 1-tap unmute
-    video.muted = false;
-    video.volume = 1.0;
-    const playPromise = video.play();
+    // Initial state: ensure paused, rewind to 0, start muted for reliable autoplay
+    video.pause();
+    video.currentTime = 0;
+    video.muted = true;
+    updateVideoSoundUI(true);
 
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        if (soundIcon) soundIcon.textContent = '🔊 Sound On';
-      }).catch(() => {
+    const playVideo = async () => {
+      try {
+        await video.play();
+      } catch (err) {
+        // Fallback to muted if unmuted playback is restricted
         video.muted = true;
-        video.play().catch(() => {});
-        if (soundIcon) soundIcon.textContent = '🔇 Tap for Sound';
+        updateVideoSoundUI(true);
+        try {
+          await video.play();
+        } catch (e) {
+          console.warn('Autoplay error:', e);
+        }
+      }
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // Play only when user has actually scrolled to the video (at least 35% visible)
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+            if (!isClassicVideoInView) {
+              isClassicVideoInView = true;
+              // Restart video from beginning when scrolled into view
+              video.currentTime = 0;
+              playVideo();
+            }
+          } else if (!entry.isIntersecting || entry.intersectionRatio < 0.15) {
+            if (isClassicVideoInView) {
+              isClassicVideoInView = false;
+              // Pause video when user is not on the video screen
+              if (!video.paused) {
+                video.pause();
+              }
+            }
+          }
+        });
+      }, {
+        threshold: [0, 0.15, 0.35, 0.6]
       });
+
+      observer.observe(video);
+    } else {
+      // Fallback scroll listener for browsers without IntersectionObserver
+      const checkScroll = () => {
+        const rect = video.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        const visibleHeight = Math.max(0, Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0));
+        const visibleRatio = rect.height > 0 ? visibleHeight / rect.height : 0;
+
+        if (visibleRatio >= 0.35) {
+          if (!isClassicVideoInView) {
+            isClassicVideoInView = true;
+            video.currentTime = 0;
+            playVideo();
+          }
+        } else if (visibleRatio < 0.15) {
+          if (isClassicVideoInView) {
+            isClassicVideoInView = false;
+            if (!video.paused) video.pause();
+          }
+        }
+      };
+      window.addEventListener('scroll', checkScroll, { passive: true });
+      window.addEventListener('resize', checkScroll, { passive: true });
     }
 
-    const enableAudio = () => {
-      if (video.muted) {
-        video.muted = false;
-        video.volume = 1.0;
-        if (soundIcon) soundIcon.textContent = '🔊 Sound On';
+    // Pause when user switches browser tab, resume if still in view
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (!video.paused) video.pause();
+      } else if (isClassicVideoInView) {
+        video.play().catch(() => {});
       }
-      ['touchstart', 'click'].forEach(evt => document.removeEventListener(evt, enableAudio));
-    };
-    ['touchstart', 'click'].forEach(evt => document.addEventListener(evt, enableAudio, { once: true }));
+    });
   }
 
   window.toggleMainVideoSound = function() {
     const video = document.getElementById('classicMainVideo');
-    const soundIcon = document.getElementById('videoSoundIcon');
     if (!video) return;
     if (video.muted) {
       video.muted = false;
       video.volume = 1.0;
-      if (video.paused) video.play();
-      if (soundIcon) soundIcon.textContent = '🔊 Sound On';
+      if (video.paused) video.play().catch(() => {});
+      updateVideoSoundUI(false);
     } else {
       video.muted = true;
-      if (soundIcon) soundIcon.textContent = '🔇 Tap for Sound';
+      updateVideoSoundUI(true);
     }
   };
 

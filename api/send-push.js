@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
     const notifKey = `${order_id || 'general'}_${event_type || title || 'order'}`;
     const now = Date.now();
 
-    // 🔒 STRICT DEDUPLICATION: Prevent duplicate pushes for the same order event within 5 minutes
+    // STRICT DEDUPLICATION: Prevent duplicate pushes for the same order event within 5 minutes
     if (order_id && recentPushes.has(notifKey)) {
       const lastSent = recentPushes.get(notifKey);
       if (now - lastSent < 300000) {
