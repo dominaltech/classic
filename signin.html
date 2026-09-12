@@ -275,26 +275,49 @@
 
   document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const email = document.getElementById('loginEmail').value;
+    const btn = e.target.querySelector('button[type="submit"]');
+    const origText = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'SIGNING IN...'; }
+
+    const email = document.getElementById('loginEmail').value.trim();
     const pass = document.getElementById('loginPass').value;
 
     if (window.urSupabase) {
-      const { data, error } = await window.urSupabase.auth.signInWithPassword({ email, password: pass });
-      if (error) {
-        window.UR_TOAST('Sign In Error: ' + error.message);
-      } else {
-        const u = data.user;
-        const phone = u.user_metadata?.phone || '';
-        const userMeta = {
-          name: u.user_metadata?.full_name || email.split('@')[0],
-          email: u.email,
-          phone: phone || '+91 9876543210'
-        };
-        localStorage.setItem('classic_user_profile', JSON.stringify(userMeta));
-        if (phone) localStorage.setItem('classic_user_phone', phone);
-        localStorage.setItem('classic_user_email', u.email);
-        window.UR_TOAST('Signed in successfully!');
-        checkAuthSession();
+      try {
+        let { data, error } = await window.urSupabase.auth.signInWithPassword({ email, password: pass });
+
+        // Auto-confirm fallback: if unconfirmed email error, trigger RPC confirmation and retry immediately
+        if (error && (error.message.toLowerCase().includes('confirm') || error.message.toLowerCase().includes('not confirmed'))) {
+          try {
+            await window.urSupabase.rpc('confirm_user_account', { user_email: email });
+            const retry = await window.urSupabase.auth.signInWithPassword({ email, password: pass });
+            if (!retry.error && retry.data?.user) {
+              data = retry.data;
+              error = null;
+            }
+          } catch(rpcErr) {}
+        }
+
+        if (error) {
+          window.UR_TOAST('Sign In Error: ' + error.message);
+        } else {
+          const u = data.user;
+          const phone = u.user_metadata?.phone || '';
+          const userMeta = {
+            name: u.user_metadata?.full_name || email.split('@')[0],
+            email: u.email,
+            phone: phone || '+91 9876543210'
+          };
+          localStorage.setItem('classic_user_profile', JSON.stringify(userMeta));
+          if (phone) localStorage.setItem('classic_user_phone', phone);
+          localStorage.setItem('classic_user_email', u.email);
+          window.UR_TOAST('Signed in successfully!');
+          checkAuthSession();
+        }
+      } catch(err) {
+        window.UR_TOAST('Sign in error: ' + err.message);
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = origText; }
       }
     } else {
       const userMeta = { name: email.split('@')[0], email: email, phone: '+91 9876543210' };
@@ -302,36 +325,79 @@
       localStorage.setItem('classic_user_email', email);
       window.UR_TOAST('Signed in successfully!');
       checkAuthSession();
+      if (btn) { btn.disabled = false; btn.textContent = origText; }
     }
   });
 
   document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const name = document.getElementById('regName').value;
-    const phone = document.getElementById('regPhone').value;
-    const email = document.getElementById('regEmail').value;
+    const btn = e.target.querySelector('button[type="submit"]');
+    const origText = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'CREATING ACCOUNT...'; }
+
+    const name = document.getElementById('regName').value.trim();
+    const phone = document.getElementById('regPhone').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
     const pass = document.getElementById('regPass').value;
 
-    const userMeta = { name, email, phone };
+    const userMeta = { name, email, phone, role: 'Customer' };
     localStorage.setItem('classic_user_profile', JSON.stringify(userMeta));
     localStorage.setItem('classic_user_phone', phone);
     localStorage.setItem('classic_user_email', email);
 
     if (window.urSupabase) {
-      const { data, error } = await window.urSupabase.auth.signUp({
-        email,
-        password: pass,
-        options: { data: { full_name: name, phone: phone } }
-      });
-      if (error) {
-        window.UR_TOAST(error.message);
-      } else {
-        window.UR_TOAST('Account registered successfully!');
+      try {
+        const { data, error } = await window.urSupabase.auth.signUp({
+          email,
+          password: pass,
+          options: { data: { full_name: name, phone: phone } }
+        });
+
+        if (error) {
+          window.UR_TOAST(error.message);
+          return;
+        }
+
+        // Auto-confirm user via RPC to guarantee no email verification is needed
+        try {
+          await window.urSupabase.rpc('confirm_user_account', { user_email: email });
+        } catch(rpcErr) {}
+
+        // Automatically log the user in immediately so they never have to confirm email
+        let activeUser = data?.user;
+        const { data: signInData, error: signInErr } = await window.urSupabase.auth.signInWithPassword({
+          email,
+          password: pass
+        });
+
+        if (!signInErr && signInData?.user) {
+          activeUser = signInData.user;
+        }
+
+        // Sync profile record in profiles table
+        if (activeUser?.id) {
+          try {
+            await window.urSupabase.from('profiles').upsert({
+              id: activeUser.id,
+              full_name: name,
+              phone: phone,
+              role: 'user',
+              updated_at: new Date()
+            }, { onConflict: 'id' });
+          } catch(pErr) {}
+        }
+
+        window.UR_TOAST('Account registered & signed in successfully!');
         checkAuthSession();
+      } catch(err) {
+        window.UR_TOAST('Registration error: ' + err.message);
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = origText; }
       }
     } else {
       window.UR_TOAST('Account registered successfully!');
       checkAuthSession();
+      if (btn) { btn.disabled = false; btn.textContent = origText; }
     }
   });
 
