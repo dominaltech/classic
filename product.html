@@ -475,13 +475,13 @@
           isInStock: v.is_in_stock !== false && (v.stock_quantity === null || v.stock_quantity === undefined || v.stock_quantity > 0)
         }));
       } else {
-        // Fallback standard sizes
+        // Fallback cloth material cut lengths in meters
         variantList = [
-          { size: 'S', isInStock: true },
-          { size: 'M', isInStock: true },
-          { size: 'L', isInStock: true },
-          { size: 'XL', isInStock: true },
-          { size: 'XXL', isInStock: true }
+          { size: '1.2M', isInStock: true },
+          { size: '1.6M', isInStock: true },
+          { size: '2.0M', isInStock: true },
+          { size: '2.5M', isInStock: true },
+          { size: '3.0M', isInStock: true }
         ];
       }
 
