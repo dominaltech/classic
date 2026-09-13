@@ -39,7 +39,7 @@
       const { data, error } = await client
         .from('store_settings')
         .select('*')
-        .eq('id', 'default')
+        .limit(1)
         .maybeSingle();
 
       if (data) {
