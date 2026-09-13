@@ -536,10 +536,11 @@
             <div id="pdpCouponBannerContainer"></div>
 
             <div>
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <label style="font-weight:700;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;display:block;margin-bottom:0;">Select Cut Length / Size</label>
-                <span id="selectedSizeLabel" style="font-size:12px; font-weight:700; color:var(--text-muted);">Cut: <strong>${selectedSize || 'Standard'}</strong></span>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <label style="font-weight:700;font-size:12px;letter-spacing:0.5px;text-transform:uppercase;display:block;margin-bottom:0;">Select Fabric Cut Length (Meters)</label>
+                <span id="selectedSizeLabel" style="font-size:12px; font-weight:700; color:var(--text-muted);">Cut: <strong>${selectedSize || 'Standard Cut'}</strong></span>
               </div>
+              <p style="font-size:11px; color:var(--text-muted); margin-bottom:8px;">1.2M (Nehru Jacket) · 1.6M (Shirt) · 2.0M (Pant) · 2.5M (Kurta) · 3.0M (Suit/Blazer)</p>
               <div style="display:flex;gap:10px;flex-wrap:wrap;">
                 ${variantList.map(v => `
                   <button 

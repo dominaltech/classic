@@ -165,7 +165,7 @@
           name: item.name,
           price: parseFloat(item.price),
           image: item.image,
-          size: item.size || 'M',
+          size: item.size || 'Standard Cut',
           quantity: item.quantity || 1
         });
       }
