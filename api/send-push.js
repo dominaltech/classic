@@ -8,9 +8,9 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const vapidSubject = process.env.VAPID_SUBJECT || "mailto:support@urbanrichshop.com";
-  const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || "BLAiHhe09D65RzlO2uYBZlskrAI7M3Xg4Bu5vHN4jLjlP6Ss5aEvViiTwOPgWLQqbAn27_ATJtaOmlreHSjdFTc";
-  const vapidPrivateKey = process.env.VAPID_PRIVATE_KEY || "LjCWxk2jZ7GDuOeKB7c98keCK2HmyROBzK8h99uQz84";
+  const vapidSubject = process.env.VAPID_SUBJECT || "mailto:classicbydominal@gmail.com";
+  const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || "BFPUamUZsFMswRhmwXNa1lCFPcCLCaBLVN7R4Kuae6ZoVMoFsxNZePyhkTBvTDqp-PqlknIKn6H-NrZthA5JiU8";
+  const vapidPrivateKey = process.env.VAPID_PRIVATE_KEY || "KIV1Nl5eluwxYNTWc_CUTSAzls_BV4G9Dc3_iUmGKSQ";
 
   webpush.setVapidDetails(vapidSubject, vapidPublicKey, vapidPrivateKey);
 
@@ -30,14 +30,14 @@ module.exports = async (req, res) => {
     recentPushes.set(notifKey, now);
 
     const payload = JSON.stringify({
-      title: title || 'NEW URBAN RICH ORDER!',
+      title: title || 'NEW CLASSIC COLLECTION ORDER!',
       body: message || `Order ${order_id || ''} for ₹${amount || '0'}`,
       order_id: order_id || '',
-      icon: '/images/logo.jpg'
+      icon: '/images/logo.png'
     });
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://mizbiarhnxzrpfuodqnj.supabase.co";
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlbWxxb2pxbHVpbXFlZ3J5eHVnIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NTk3Nzc3OSwiZXhwIjoyMTAxNTUzNzc5fQ.v-XqgNQuoir-nvrvEoIndsqu_G9WOEFJV";
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1pemJpYXJobnh6cnBmdW9kcW5qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0OTg3NTYsImV4cCI6MjEwNDA3NDc1Nn0.plMkDTZJ7wy2D6yLWtRmJU_gvJ9z-zZYXumbOlWHCrU";
 
     const fetchRes = await fetch(`${supabaseUrl}/rest/v1/admin_push_subscriptions?select=*`, {
       headers: {

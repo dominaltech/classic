@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
 
     const host = env === "PRODUCTION" ? "api.cashfree.com" : "sandbox.cashfree.com";
 
-    const origin = req.headers.origin || req.headers.referer ? (req.headers.origin || new URL(req.headers.referer).origin) : 'https://urbanrichshop.com';
+    const origin = req.headers.origin || req.headers.referer ? (req.headers.origin || new URL(req.headers.referer).origin) : 'https://classicsolapur.com';
     const returnUrl = `${origin}/order-success.html?order_id={order_id}`;
 
     const cust = customer_details || {};
@@ -29,8 +29,8 @@ module.exports = async (req, res) => {
       order_currency: order_currency || 'INR',
       customer_details: {
         customer_id: cust.customer_id || 'cust_' + Date.now(),
-        customer_name: cust.customer_name || 'Urban Customer',
-        customer_email: cust.customer_email || 'support@urbanrichshop.com',
+        customer_name: cust.customer_name || 'Classic Customer',
+        customer_email: cust.customer_email || 'classicbydominal@gmail.com',
         customer_phone: cust.customer_phone ? cust.customer_phone.replace(/[^0-9]/g, '').slice(-10) : '9876543210'
       },
       order_meta: {

@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     const host = env === "PRODUCTION" ? "api.cashfree.com" : "sandbox.cashfree.com";
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://mizbiarhnxzrpfuodqnj.supabase.co";
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZlbWxxb2pxbHVpbXFlZ3J5eHVnIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4NTk3Nzc3OSwiZXhwIjoyMTAxNTUzNzc5fQ.v-XqgNQuoir-nvrvEoIndsqu_G9WOEFJV";
+    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1pemJpYXJobnh6cnBmdW9kcW5qIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0OTg3NTYsImV4cCI6MjEwNDA3NDc1Nn0.plMkDTZJ7wy2D6yLWtRmJU_gvJ9z-zZYXumbOlWHCrU";
 
     // Helper: Push notification to Admin PWA with strict deduplication
     async function notifyAdminOnce(eventType, title, body, orderId, amount) {
@@ -35,16 +35,16 @@ module.exports = async (req, res) => {
       recentPushes.set(pushKey, now);
 
       try {
-        const vapidSubject = process.env.VAPID_SUBJECT || "mailto:support@urbanrichshop.com";
-        const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || "BLAiHhe09D65RzlO2uYBZlskrAI7M3Xg4Bu5vHN4jLjlP6Ss5aEvViiTwOPgWLQqbAn27_ATJtaOmlreHSjdFTc";
-        const vapidPrivateKey = process.env.VAPID_PRIVATE_KEY || "LjCWxk2jZ7GDuOeKB7c98keCK2HmyROBzK8h99uQz84";
+        const vapidSubject = process.env.VAPID_SUBJECT || "mailto:classicbydominal@gmail.com";
+        const vapidPublicKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || "BFPUamUZsFMswRhmwXNa1lCFPcCLCaBLVN7R4Kuae6ZoVMoFsxNZePyhkTBvTDqp-PqlknIKn6H-NrZthA5JiU8";
+        const vapidPrivateKey = process.env.VAPID_PRIVATE_KEY || "KIV1Nl5eluwxYNTWc_CUTSAzls_BV4G9Dc3_iUmGKSQ";
         webpush.setVapidDetails(vapidSubject, vapidPublicKey, vapidPrivateKey);
 
         const pushPayload = JSON.stringify({
           title,
           body,
           order_id: orderId,
-          icon: '/images/logo.jpg'
+          icon: '/images/logo.png'
         });
 
         const fetchRes = await fetch(`${supabaseUrl}/rest/v1/admin_push_subscriptions?select=*`, {
